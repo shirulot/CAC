@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 public enum MagicType
 {
     InstantMagic,
@@ -10,17 +12,25 @@ public enum MagicType
 /// 【即时魔术 自己回合发动,直接生效】
 /// 【反击魔术 安放之后再特定时期触发】
 /// </summary>
-public class Magic : Card
+public class Magic : Card,ITargetChooser
 {
     public virtual MagicType GetMagicType() => MagicType.CounterMagic;
 
     protected Character holder;
-
-    //手动使用
-    public virtual void OnUseEffect()
+    
+    // 能力预发动 通常是用于选中对象等
+    public virtual void EffectPreAction()
+    {
+        EffectAction(null);
+    }
+    
+    
+    // 能力发动
+    public virtual void EffectAction(List<Card> targets)
     {
     }
 
+    // 角色持有
     public virtual void SetToCharacter(Character target)
     {
         holder = target;

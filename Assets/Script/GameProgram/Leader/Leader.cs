@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-public class Leader : Lifecycle
+public class Leader : Unit
 {
     private List<Card> _depositList;
     private int _depositCountDown = 1;

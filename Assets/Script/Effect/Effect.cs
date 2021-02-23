@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-public class Effect : Lifecycle
+public class Effect : Unit
 {
     int level;
     public bool enable = true;

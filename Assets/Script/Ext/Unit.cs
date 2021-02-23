@@ -3,7 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Lifecycle : MonoBehaviour
+/**
+ * 管理生命周期的最小单元
+ */
+public class Unit : MonoBehaviour
 {
     // 卡片名字
     public virtual String Name() => "";
@@ -20,6 +23,10 @@ public class Lifecycle : MonoBehaviour
 
     // 攻击被回避
     public virtual void OnAttackMiss()
+    {
+    }
+    // 成功回避攻击
+    public virtual void OnAvoidAttack()
     {
     }
 
@@ -101,6 +108,7 @@ public class Lifecycle : MonoBehaviour
     public virtual void OnHpChange(int incremental)
     {
     }
+    
 
     public bool CheckTimePoint(String timePoint) => _timePointList.Contains(timePoint);
 }

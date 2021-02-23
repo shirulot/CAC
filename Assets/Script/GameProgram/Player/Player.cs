@@ -1,7 +1,9 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
-public class Player :MonoBehaviour
+public class Player : MonoBehaviour
 {
     //卡组
     public Deck Deck;
@@ -20,6 +22,16 @@ public class Player :MonoBehaviour
 
     // 光环
     private List<Aureole> AureoleList = new List<Aureole>();
+
+    //玩家对象
+    [SerializeField] 
+    GameObject PlayerObj;
+
+
+    // private void Awake()
+    // {
+    //     
+    // }
 
     //抽卡
     public void CardDraw()
@@ -55,6 +67,7 @@ public class Player :MonoBehaviour
         ActionPoint += point;
     }
 
+    // 启用/禁用 光环
     public void setAureoleEnable(Aureole target, bool enable)
     {
         var hasTarget = AureoleList.Contains(target);
@@ -68,8 +81,8 @@ public class Player :MonoBehaviour
             target.setEnabled(enable, this);
         }
     }
-    
-    
+
+
     //分数变更 
     public void ScoreChange(int point)
     {

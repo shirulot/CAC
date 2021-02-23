@@ -37,57 +37,57 @@ public class Character : Card
 
     public override void OnCardDraw()
     {
-        ForEachLifecycle(delegate(Lifecycle lifecycle) { lifecycle.OnCardDraw(); });
+        ForEachLifecycle(delegate(Unit lifecycle) { lifecycle.OnCardDraw(); });
     }
 
     public override void OnAttackMiss()
     {
-        ForEachLifecycle(delegate(Lifecycle lifecycle) { lifecycle.OnAttackMiss(); });
+        ForEachLifecycle(delegate(Unit lifecycle) { lifecycle.OnAttackMiss(); });
     }
-
-    public virtual void OnAvoidAttack()
+    
+    public override void OnAvoidAttack()
     {
-        ForEachLifecycle(delegate(Lifecycle lifecycle) { lifecycle.OnAttackMiss(); });
+        ForEachLifecycle(delegate(Unit lifecycle) { lifecycle.OnAvoidAttack(); });
     }
 
     public override void OnTurnStart()
     {
-        ForEachLifecycle(delegate(Lifecycle lifecycle) { lifecycle.OnTurnStart(); });
+        ForEachLifecycle(delegate(Unit lifecycle) { lifecycle.OnTurnStart(); });
     }
 
     public override void OnAttackStart(Character targetCharacter)
     {
-        ForEachLifecycle(delegate(Lifecycle lifecycle) { lifecycle.OnAttackStart(targetCharacter); });
+        ForEachLifecycle(delegate(Unit lifecycle) { lifecycle.OnAttackStart(targetCharacter); });
     }
 
     public override void OnBeforeBeingAttacked(Character character)
     {
-        ForEachLifecycle(delegate(Lifecycle lifecycle) { lifecycle.OnBeforeBeingAttacked(character); });
+        ForEachLifecycle(delegate(Unit lifecycle) { lifecycle.OnBeforeBeingAttacked(character); });
     }
 
     public override void OnAfterBeingAttacked(Character character)
     {
-        ForEachLifecycle(delegate(Lifecycle lifecycle) { lifecycle.OnAfterBeingAttacked(character); });
+        ForEachLifecycle(delegate(Unit lifecycle) { lifecycle.OnAfterBeingAttacked(character); });
     }
 
     public override void OnBeforeCounterattack(Character counterTarget)
     {
-        ForEachLifecycle(delegate(Lifecycle lifecycle) { lifecycle.OnBeforeCounterattack(counterTarget); });
+        ForEachLifecycle(delegate(Unit lifecycle) { lifecycle.OnBeforeCounterattack(counterTarget); });
     }
 
     public override void OnAfterCounterattack(Character counterTarget)
     {
-        ForEachLifecycle(delegate(Lifecycle lifecycle) { lifecycle.OnAfterCounterattack(counterTarget); });
+        ForEachLifecycle(delegate(Unit lifecycle) { lifecycle.OnAfterCounterattack(counterTarget); });
     }
 
     public override void OnAttackEnd(Character targetCharacter)
     {
-        ForEachLifecycle(delegate(Lifecycle lifecycle) { lifecycle.OnAttackEnd(targetCharacter); });
+        ForEachLifecycle(delegate(Unit lifecycle) { lifecycle.OnAttackEnd(targetCharacter); });
     }
 
     public override void OnTurnEnd()
     {
-        ForEachLifecycle(delegate(Lifecycle lifecycle) { lifecycle.OnTurnEnd(); });
+        ForEachLifecycle(delegate(Unit lifecycle) { lifecycle.OnTurnEnd(); });
     }
 
     // Hp变动 增加/减少

@@ -1,43 +1,35 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
-
-// using UnityEngine.EventSystems;
-// using UnityEngine.UI;
-// using UnityEditor;
-
+using UnityEngine.EventSystems;
 
 public class RankUpInstruction : Magic
 {
-    private void Start()
-    {
-        _component = target.GetComponent<Character>();
-    }
-
-    private void Awake()
-    {
-        _component = target.GetComponent<Character>();
-    }
-
     public override MagicType GetMagicType() => MagicType.InstantMagic;
 
-    public override void OnUseEffect()
+    // 选择需要进行的对象
+    public override void EffectPreAction()
     {
-        // var mouseButtonDown = Input.GetMouseButtonDown(0);
+        GetComponent<EventHandle>().SelectionTarget(this,1,1);
     }
 
-    GameObject target = new GameObject();
-    private Character _component;
-
-
-    private void Update()
+    //选中后的逻辑
+    public override void EffectAction(List<Card> targets)
     {
-        if (!Input.GetMouseButtonDown(0)) return;
-
-        // EventSystem.current.IsPointerOverGameObject();
-        // GameObject target = new GameObject();
-        if (target.GetType().IsInstanceOfType(typeof(Character)))
+        // var component = target.GetComponent<Card>();
+        if (targets != null && targets.Count > 0)
         {
-            var cardInfoActiveId = _component.CardInfo.activeId + 10;
+            var cardInfoActiveId = targets[0].CardInfo.activeId + 10;
+            var currentPlayer = GetComponent<PlayerManager>().CurrentPlayer;
+            var deck = currentPlayer.Deck;
+            var hand = currentPlayer.Hand;
+            var card = deck.FindCardByActiveId(cardInfoActiveId);
+            hand.AddHand(card);
         }
     }
+
+    public override string Name() => "提升指令";
+
+    public override string Description() => "cost:10\n选定场地内的一个我方单位,将其高一阶的卡牌加入手牌";
+    
 }

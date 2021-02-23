@@ -28,7 +28,7 @@ public enum ExtraTag
 public class ExtraActionProgram
 {
     private static ExtraActionProgram _instance;
-    private Dictionary<ExtraTag, Lifecycle> _lifecycleMap = new Dictionary<ExtraTag, Lifecycle>();
+    private Dictionary<ExtraTag, Unit> _lifecycleMap = new Dictionary<ExtraTag, Unit>();
     private Dictionary<ExtraTag, Player> _playerMap = new Dictionary<ExtraTag, Player>();
 
     private ExtraActionProgram()
@@ -44,12 +44,12 @@ public class ExtraActionProgram
     public Player FindPlayer(ExtraTag tag) => _playerMap[tag];
 
     // 查询buff ability 也可以用于查询卡片
-    public Lifecycle FindEffect(ExtraTag tag) => _lifecycleMap[tag] ?? Card.NewBlankCard();
+    public Unit FindEffect(ExtraTag tag) => _lifecycleMap[tag] ?? Card.NewBlankCard();
 
     // 保存
-    public void Save(ExtraTag tag, Lifecycle lifecycle)
+    public void Save(ExtraTag tag, Unit unit)
     {
-        _lifecycleMap[tag] = lifecycle;
+        _lifecycleMap[tag] = unit;
     }
 
     public void SavePlayer(ExtraTag tag, Player player)

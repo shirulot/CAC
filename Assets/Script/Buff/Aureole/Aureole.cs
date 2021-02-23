@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 
 // 光环效果 一般为魔像衍生
-public class Aureole : Lifecycle
+public class Aureole : Unit
 {
     //用来存放对应
     public Dictionary<Character, Buff> AureoleMap = new Dictionary<Character, Buff>();

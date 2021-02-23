@@ -28,9 +28,6 @@ public class PlayerManager : MonoBehaviour
     // log
     private ExtraActionProgram _extraActionProgram;
 
-    private static PlayerManager _instance;
-    public static PlayerManager GetInstance() => _instance;
-
 
     // 获取当前玩家
     public Player GetCurrentPlayer() => _players[_currentPlayerIndex];
@@ -38,18 +35,17 @@ public class PlayerManager : MonoBehaviour
     // 获取当前行动的玩家
     public Player GetCurrentActivePlayer() => _players[_activePlayerIndex];
 
-
-    private PlayerManager()
-    {
-    }
+    
 
 
-    public static void Init(MainProgram program)
-    {
-        //单列化当前对象 并向游戏对象添加当前脚本 
-        if (_instance == null) _instance = program.GameProgram.AddComponent<PlayerManager>();
-        _instance._program = program;
-    }
+    
+    // public void Awake()
+    // {
+    //     // //单列化当前对象 并向游戏对象添加当前脚本 
+    //     // if (_instance == null) _instance = program.GameProgram.AddComponent<PlayerManager>();
+    //     // _instance._program = program;
+    //     
+    // }
 
     // 玩家轮换
     public void TakePlayerTurns()

@@ -1,9 +1,11 @@
 using System;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 //卡片
-public class Card : Lifecycle, IComparable
+public class Card : Unit, IComparable
 {
+
     protected Card()
     {
     } 
@@ -27,4 +29,32 @@ public class Card : Lifecycle, IComparable
 
     // 根据游戏id排序
     public int CompareTo(object obj) => obj is Card c && c.CardInfo.activeId > CardInfo.activeId ? 1 : 0;
+    
+    private void OnMouseDown()
+    {
+        if (EventSystem.current.IsPointerOverGameObject(-1))
+        {
+            // 当前点击是否被拦截 否则为普通点击
+            var isIntercept = GetComponent<EventHandle>().OnMouseDown(this);
+            if (!isIntercept) OnMouseClick();
+        }
+        //监听右键
+        else if (EventSystem.current.IsPointerOverGameObject(0))
+        {
+            GetComponent<EventHandle>().Cancel();
+            OnCancel();
+        }
+       
+        
+    }
+
+    private void OnCancel()
+    {
+        
+    }
+
+    public virtual void OnMouseClick()
+    {
+        
+    }
 }

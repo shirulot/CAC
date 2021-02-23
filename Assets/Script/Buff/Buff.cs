@@ -10,7 +10,7 @@ public enum BuffType
     Aureole
 }
 
-public class Buff : Lifecycle
+public class Buff : Unit
 {
     // buff等级
     public int buffLevel = 0;
