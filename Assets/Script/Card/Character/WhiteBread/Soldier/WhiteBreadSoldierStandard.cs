@@ -12,5 +12,9 @@ public class WhiteBreadSoldierStandard : Character
         State.Init(avoid: 5, hitRate: 95, mobility: 3, attack: 3, maxHp: 10, hp: 10, score: 10);
     }
 
-    protected override void EffectAttach() => SingleEffectAttach(new StrikerEffect(attachTarget: this));
+    protected override void EffectAttach()
+    {
+        var effect = Obj.AddComponent<StrikerEffect>();
+        effect.AttachCharacter(this);
+    }
 }

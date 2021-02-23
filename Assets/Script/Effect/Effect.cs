@@ -12,9 +12,10 @@ public class Effect : Unit
 
     // private List<String> abilityTag = new List<String> {BaseTag.Ability, BaseTag.Ability};
 
-    public Effect(Character attachTarget)
+    public void AttachCharacter(Character attachTarget)
     {
         this.attachTarget = attachTarget;
+        OnAttach();
     }
 
     public virtual void OnAttach()

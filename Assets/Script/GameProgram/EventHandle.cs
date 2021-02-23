@@ -21,7 +21,7 @@ public class EventHandle : MonoBehaviour
         _targetChooser = null;
     }
 
-    public bool OnMouseDown(Card card)
+    public bool OnClick(Card card)
     {
         _targetChooser?.Selection(card);
         return _targetChooser != null;

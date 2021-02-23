@@ -35,7 +35,7 @@ public class Card : Unit, IComparable
         if (EventSystem.current.IsPointerOverGameObject(-1))
         {
             // 当前点击是否被拦截 否则为普通点击
-            var isIntercept = GetComponent<EventHandle>().OnMouseDown(this);
+            var isIntercept = GetComponent<EventHandle>().OnClick(this);
             if (!isIntercept) OnMouseClick();
         }
         //监听右键

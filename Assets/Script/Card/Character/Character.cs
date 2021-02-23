@@ -21,10 +21,12 @@ public class Character : Card
     public int LastAttackIncrement = 0;
 
     public Player Player;
+    protected GameObject Obj;
     private CharacterState _state = new CharacterState();
 
     public Character(Player player)
     {
+        Obj = new GameObject();
         this.Player = player;
         EffectAttach();
     }
@@ -218,12 +220,6 @@ public class Character : Card
     // 角色进场之前 获得能力
     protected virtual void EffectAttach()
     {
-    }
-
-    public virtual void SingleEffectAttach(Effect effect)
-    {
-        effectList.Add(effect);
-        effect.OnAttach();
     }
 
     public virtual void AttackTarget(Character target)
