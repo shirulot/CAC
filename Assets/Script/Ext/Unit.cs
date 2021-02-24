@@ -36,7 +36,7 @@ public class Unit : MonoBehaviour
     }
 
     //override 攻击前时点
-    public virtual void OnAttackStart(Character targetCharacter)
+    public virtual void OnAttackStart(Card targetCharacter)
     {
     }
 
@@ -45,6 +45,11 @@ public class Unit : MonoBehaviour
     {
     }
 
+    //override 攻击结束
+    public virtual void OnAttackEnd(Character targetCharacter)
+    {
+    }
+    
     // 被攻击后
     public virtual void OnAfterBeingAttacked(Character character)
     {
@@ -60,10 +65,6 @@ public class Unit : MonoBehaviour
     {
     }
 
-    //override 攻击结束
-    public virtual void OnAttackEnd(Character targetCharacter)
-    {
-    }
 
     // 回合结束时点
     public virtual void OnTurnEnd()

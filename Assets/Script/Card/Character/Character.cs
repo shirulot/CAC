@@ -21,7 +21,7 @@ public class Character : Card
     public int LastAttackIncrement = 0;
 
     public Player Player;
-    protected GameObject Obj;
+    public GameObject Obj;
     private CharacterState _state = new CharacterState();
 
     public Character(Player player)
@@ -57,7 +57,7 @@ public class Character : Card
         ForEachLifecycle(delegate(Unit lifecycle) { lifecycle.OnTurnStart(); });
     }
 
-    public override void OnAttackStart(Character targetCharacter)
+    public override void OnAttackStart(Card targetCharacter)
     {
         ForEachLifecycle(delegate(Unit lifecycle) { lifecycle.OnAttackStart(targetCharacter); });
     }
@@ -101,6 +101,7 @@ public class Character : Card
 
     void ForEachLifecycle<TLifecycle>(Action<TLifecycle> action) where TLifecycle : class
     {
+        action.Invoke(magic as TLifecycle);
         effectList.ForEach(delegate(Effect effect) { action.Invoke(effect as TLifecycle); });
         buffList.ForEach(delegate(Buff buff) { action.Invoke(buff as TLifecycle); });
     }
@@ -226,5 +227,10 @@ public class Character : Card
     {
         // 伤害结算
         target.Damage(State.Attack, IsPiercing());
+    }
+
+    public void MagicAttach(Magic magic)
+    {
+        this.magic = magic;
     }
 }

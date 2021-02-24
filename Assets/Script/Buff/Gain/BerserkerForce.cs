@@ -15,7 +15,7 @@ public class BerserkerForce : Gain
 
     public override string Name() => "狂战士之力";
 
-    public override void OnAttackStart(Character targetCharacter)
+    public override void OnAttackStart(Card targetCharacter)
     {
         if (enable)
         {

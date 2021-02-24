@@ -7,6 +7,14 @@ public class RankUpInstruction : Magic
 {
     public override MagicType GetMagicType() => MagicType.InstantMagic;
 
+    public override bool IsSingle() => true;
+
+    public RankUpInstruction()
+    {
+        CardInfo.Init(seriesId: "9999", groupId: "0001", rank: 2, no: 2);
+    }
+
+
     // 选择需要进行的对象
     public override void EffectPreAction()
     {

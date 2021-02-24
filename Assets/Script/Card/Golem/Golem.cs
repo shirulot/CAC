@@ -8,9 +8,11 @@ public enum GolemType
 
     // 光环型:为特定条件下的角色附加buff，主体为图腾 HP为0时破坏
     Aureole,
-
+    
     // 充能型:初始存在较高HP 只接受自己角色的攻击,HP为0时破坏 破坏时发动强力效果
-    Charge
+    Charge,
+    //TODO 载具型: 存在普通HP 拥有较远的攻击范围 需要驾驶员 在有驾驶员时不会受到攻击
+    //TODO 攻击型: 存在较低HP 拥有较远的攻击范围 强攻击
 }
 
 public class Golem : Card

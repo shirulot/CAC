@@ -6,7 +6,7 @@ public class OppressHeavyAttackEffect : Effect
 
     private int _increment = 2;
 
-    public override void OnAttackStart(Character targetCharacter)
+    public override void OnAttackStart(Card targetCharacter)
     {
         if (enabled && attachTarget.CardInfo.Rank > targetCharacter.CardInfo.Rank)
             attachTarget.ChangeAttack(_increment);
