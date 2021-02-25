@@ -46,7 +46,7 @@ public class Unit : MonoBehaviour
     }
 
     //override 攻击结束
-    public virtual void OnAttackEnd(Character targetCharacter)
+    public virtual void OnAttackEnd(Card targetCharacter)
     {
     }
     

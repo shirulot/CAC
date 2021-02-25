@@ -108,4 +108,20 @@ public class BattleManager : MonoBehaviour
         attacker.OnAttackMiss();
         target.OnAvoidAttack();
     }
+
+    //魔像战斗
+    public void Battle(Golem target)
+    {
+        _attacker.OnAttackStart(target);
+        target.OnBeforeBeingAttacked(_attacker);
+        // 双方在攻击前未被破坏才进行正式战斗结算
+        if (!_attacker.IsBlank && !target.IsBlank)
+        {
+            //Golem战不进行命中结算（必中）
+            _attacker.AttackTarget(target);
+            // 攻击后/被攻击后 即使破坏也回调 需要判断破坏的回调在方法内部进行 
+            _attacker.OnAttackEnd(target);
+            target.OnAfterBeingAttacked(_attacker);
+        }
+    }
 }

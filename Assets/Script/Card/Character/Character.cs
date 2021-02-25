@@ -82,7 +82,7 @@ public class Character : Card
         ForEachLifecycle(delegate(Unit lifecycle) { lifecycle.OnAfterCounterattack(counterTarget); });
     }
 
-    public override void OnAttackEnd(Character targetCharacter)
+    public override void OnAttackEnd(Card targetCharacter)
     {
         ForEachLifecycle(delegate(Unit lifecycle) { lifecycle.OnAttackEnd(targetCharacter); });
     }
@@ -223,10 +223,18 @@ public class Character : Card
     {
     }
 
-    public virtual void AttackTarget(Character target)
+    public virtual void AttackTarget(Card target)
     {
-        // 伤害结算
-        target.Damage(State.Attack, IsPiercing());
+        if (target is Character targetCharacter)
+        {
+            // 伤害结算
+            targetCharacter.Damage(State.Attack, IsPiercing()); 
+        }
+        else if (target is Golem targetGolem)
+        {
+            targetGolem.Charged(State.Attack);
+        }
+       
     }
 
     public void MagicAttach(Magic magic)

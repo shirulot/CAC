@@ -24,7 +24,7 @@ public class BerserkerForce : Gain
         }
     }
 
-    public override void OnAttackEnd(Character targetCharacter)
+    public override void OnAttackEnd(Card targetCharacter)
     {
         attachTarget.Damage(_incremental);
         attachTarget.ChangeAttack(-_incremental);

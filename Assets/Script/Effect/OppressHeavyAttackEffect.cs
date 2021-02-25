@@ -12,7 +12,7 @@ public class OppressHeavyAttackEffect : Effect
             attachTarget.ChangeAttack(_increment);
     }
     
-    public override void OnAttackEnd(Character targetCharacter)
+    public override void OnAttackEnd(Card targetCharacter)
     {
         attachTarget.ChangeAttack(-_increment);
     }

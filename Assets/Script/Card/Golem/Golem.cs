@@ -68,4 +68,10 @@ public class Golem : Card
         //角色破坏 
         MainProgram.Instance.Break(this);
     }
+
+    //充能（受到伤害）
+    public void Charged(int attack)
+    {
+        
+    }
 }
