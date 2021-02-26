@@ -4,8 +4,9 @@ using UnityEngine;
 //
 public class UnitedWeStandChildBuff : AureoleBuff
 {
-    public UnitedWeStandChildBuff(Aureole parent, Character attachTarget, int aureoleLevel = 1) : base(parent, attachTarget)
+    public void Attach(Aureole parent, Character attachTarget, int aureoleLevel = 1)
     {
+        Attach(parent, attachTarget);
         this._aureoleLevel = aureoleLevel;
     }
 
@@ -65,7 +66,7 @@ public class UnitedWeStandChildBuff : AureoleBuff
         EffectCheck();
     }
 
-    
+
     //角色退场
     public override void OnCardBreak(Card card)
     {

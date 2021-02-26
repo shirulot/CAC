@@ -6,7 +6,7 @@ public class UnitedWeStand : Aureole
 {
     int aureoleLevel = 0;
 
-    public UnitedWeStand(int aureoleLevel)
+    public  void Attach(int aureoleLevel)
     {
         this.aureoleLevel = aureoleLevel;
     }
@@ -32,7 +32,9 @@ public class UnitedWeStand : Aureole
     {
         Field.GetInstance().GetCharacters().ForEach(delegate(Character child)
         {
-            var buff = new UnitedWeStandChildBuff(this, child, aureoleLevel);
+            
+            var buff =  child.Obj.AddComponent<UnitedWeStandChildBuff>();
+            buff.Attach(this, child, aureoleLevel);
             child.BuffAttach(buff);
             AureoleMap[child] = buff;
         });

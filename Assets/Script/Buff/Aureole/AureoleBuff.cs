@@ -4,8 +4,9 @@ public class AureoleBuff : Buff
 {
     protected Aureole parent;
 
-    public AureoleBuff(Aureole parent, Character attachTarget) : base(attachTarget)
+    public void Attach(Aureole parent, Character attachTarget)
     {
+        this.attachTarget = attachTarget;
         this.parent = parent;
     }
 

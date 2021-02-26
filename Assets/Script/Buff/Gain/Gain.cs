@@ -1,6 +1,6 @@
 public class Gain : Buff
 {
-    public Gain(Character attachTarget) : base(attachTarget)
+    public Gain(Character attachTarget) 
     {
     }
 

@@ -5,9 +5,6 @@ using System;
 /// </summary>
 public class FiercePoison : Buff, IPoison
 {
-    public FiercePoison(Character attachTarget) : base(attachTarget)
-    {
-    }
 
     private int _baseDamage = 1;
     private int _growthDamage = 1;

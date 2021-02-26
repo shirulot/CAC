@@ -7,7 +7,8 @@ public enum BuffType
 {
     DeBuff,
     Gain,
-    Aureole
+    Aureole,
+    Rules
 }
 
 public class Buff : Unit
@@ -28,7 +29,7 @@ public class Buff : Unit
     // 角色
     public Character attachTarget;
 
-    public Buff(Character attachTarget)
+    public virtual void Attach(Character attachTarget)
     {
         this.attachTarget = attachTarget;
     }

@@ -148,6 +148,17 @@ public class Character : Card
     public void Damage(int damage, bool isPiercing = false)
     {
         OnBeforeDamage(damage);
+        OnDamage(damage, isPiercing);
+        OnAfterDamage(damage);
+    }
+
+    //计算伤害前 时点 
+    public virtual void OnBeforeDamage(int damage)
+    {
+    }
+    //伤害计算方法
+    public virtual void OnDamage(int damage, bool isPiercing)
+    {
         // 是否为穿刺伤害 
         if (isPiercing)
         {
@@ -164,14 +175,8 @@ public class Character : Card
             }
         }
 
-        OnAfterDamage(damage);
     }
-
-    //计算伤害前 时点 
-    public virtual void OnBeforeDamage(int damage)
-    {
-    }
-
+    
     //计算伤害后 时点 确认破坏之前
     public virtual void OnAfterDamage(int damage)
     {

@@ -14,6 +14,8 @@ public class GolemSummonMagic :Golem
     private void Awake()
     {
         CardInfo.Init("9999","0001",2,1);
+        HP = 7;
+        SoulLink = 3;
     }
 
     //link角色
@@ -23,7 +25,8 @@ public class GolemSummonMagic :Golem
         {
             CardInfo.Init("9999","0001",0,1);
         }
-
+        
+        
 
         public override string Name() => "魔术土偶";
 

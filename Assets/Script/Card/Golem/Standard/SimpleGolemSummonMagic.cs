@@ -23,7 +23,7 @@ public class SimpleGolemSummonMagic :Golem
     }
 
     //link角色
-    class LinkChild : Character
+    class LinkChild : BaseLinkChild
     {
         private void Awake()
         {
@@ -31,10 +31,6 @@ public class SimpleGolemSummonMagic :Golem
             State.Init(attack:2,score:15);
         }
 
-        public override void CharacterDeath(Player player)
-        {
-            
-        }
 
         public override string Name() => "简易魔术土偶";
 
