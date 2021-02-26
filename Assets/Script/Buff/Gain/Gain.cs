@@ -1,7 +1,8 @@
 public class Gain : Buff
 {
-    public Gain(Character attachTarget) 
+    public override void Attach(Character attachTarget)
     {
+        this.attachTarget = attachTarget;
     }
 
     public override BuffType buffType()

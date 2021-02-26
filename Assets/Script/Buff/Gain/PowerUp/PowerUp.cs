@@ -10,10 +10,6 @@ public class PowerUp : Gain
     private float _incremental = 1;
 
 
-    public PowerUp(Character attachTarget) : base(attachTarget)
-    {
-    }
-
     public override string Name() => "力量上升";
     public override string Description() => $"上升角色攻击力 等级 * {_incremental}";
 
@@ -25,10 +21,10 @@ public class PowerUp : Gain
     }
 
     // buff 升级
-    public override void BuffUp(Buff buff)
+    public override void BuffUp(int level)
     {
-        buffLevel += buff.buffLevel;
-        if (enable) attachTarget.ChangeAttack(Mathf.CeilToInt(buff.buffLevel * _incremental));
+        buffLevel += level;
+        if (enable) attachTarget.ChangeAttack(Mathf.CeilToInt(level * _incremental));
     }
 
     // buff 清除
@@ -41,7 +37,9 @@ public class PowerUp : Gain
     // 可用/禁用
     public override void OnEnableChange()
     {
-        attachTarget.ChangeAttack(enable ? Mathf.CeilToInt(buffLevel * _incremental) : -Mathf.CeilToInt(buffLevel * _incremental));
+        attachTarget.ChangeAttack(enable
+            ? Mathf.CeilToInt(buffLevel * _incremental)
+            : -Mathf.CeilToInt(buffLevel * _incremental));
     }
 
     //等级下降

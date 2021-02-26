@@ -28,7 +28,7 @@ public class AureoleBuff : Buff
         // base.BuffDown(downLevel);
     }
 
-    public override void BuffUp(Buff buff)
+    public override void BuffUp(int level = 1)
     {
         // base.BuffUp(buff);
     }

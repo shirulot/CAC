@@ -31,7 +31,7 @@ public class Character : Card
         EffectAttach();
     }
 
-    public  CharacterState State
+    public CharacterState State
     {
         get { return _state; }
     }
@@ -46,7 +46,7 @@ public class Character : Card
     {
         ForEachLifecycle(delegate(Unit lifecycle) { lifecycle.OnAttackMiss(); });
     }
-    
+
     public override void OnAvoidAttack()
     {
         ForEachLifecycle(delegate(Unit lifecycle) { lifecycle.OnAvoidAttack(); });
@@ -99,35 +99,31 @@ public class Character : Card
     }
 
 
-    void ForEachLifecycle<TLifecycle>(Action<TLifecycle> action) where TLifecycle : class
+    void ForEachLifecycle(Action<Unit> action)
     {
-        action.Invoke(magic as TLifecycle);
-        effectList.ForEach(delegate(Effect effect) { action.Invoke(effect as TLifecycle); });
-        buffList.ForEach(delegate(Buff buff) { action.Invoke(buff as TLifecycle); });
+        action.Invoke(magic);
+        var childrenComponents = this.GetComponentsInChildren<Unit>();
+        foreach (var child in childrenComponents) action.Invoke(child);
+        // effectList.ForEach(action.Invoke);
+        // buffList.ForEach(action.Invoke);
     }
 
     //buff 赋予
-    public virtual void BuffAttach<T>(T buff) where T : Buff
+    public virtual T BuffAttach<T>(int level = 1) where T : Buff
     {
-        Buff existingTarget = null;
-        buffList.ForEach(delegate(Buff child)
+        var holderBuff = GetComponentInChildren<T>();
+        T buff;
+        if (holderBuff == null)
         {
-            // var isInstanceOfType = typeof(T).IsInstanceOfType(child);
-            if (child is T)
-            {
-                existingTarget = child;
-            }
-        });
-
-        if (existingTarget == null)
-        {
-            buffList.Add(buff);
-            buff.BuffAttach();
+             buff = gameObject.AddComponent<T>();
+             buff.BuffAttach();
         }
         else
-        {
-            existingTarget.BuffUp(buff);
+        { 
+            buff = holderBuff;
+            holderBuff.BuffUp(level);
         }
+        return buff;
     }
 
     //buff清除
@@ -156,6 +152,7 @@ public class Character : Card
     public virtual void OnBeforeDamage(int damage)
     {
     }
+
     //伤害计算方法
     public virtual void OnDamage(int damage, bool isPiercing)
     {
@@ -174,9 +171,8 @@ public class Character : Card
                 State.Aegis = 0;
             }
         }
-
     }
-    
+
     //计算伤害后 时点 确认破坏之前
     public virtual void OnAfterDamage(int damage)
     {
@@ -233,11 +229,11 @@ public class Character : Card
         if (target is Character targetCharacter)
         {
             // 伤害结算
-            targetCharacter.Damage(State.Attack, IsPiercing()); 
+            targetCharacter.Damage(State.Attack, IsPiercing());
         }
         else if (target is Golem targetGolem)
         {
-            targetGolem.Charged(State.Attack,this);
+            targetGolem.Charged(State.Attack, this);
         }
     }
 

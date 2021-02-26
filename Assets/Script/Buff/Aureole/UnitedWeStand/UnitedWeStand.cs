@@ -32,10 +32,9 @@ public class UnitedWeStand : Aureole
     {
         Field.GetInstance().GetCharacters().ForEach(delegate(Character child)
         {
-            
-            var buff =  child.Obj.AddComponent<UnitedWeStandChildBuff>();
+            var buff = child.BuffAttach<UnitedWeStandChildBuff>();
+            // var buff =  child.Obj.AddComponent<UnitedWeStandChildBuff>();
             buff.Attach(this, child, aureoleLevel);
-            child.BuffAttach(buff);
             AureoleMap[child] = buff;
         });
     }

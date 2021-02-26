@@ -3,10 +3,6 @@
 /// </summary>
 public class BerserkerForce : Gain
 {
-    public BerserkerForce(Character attachTarget) : base(attachTarget)
-    {
-    }
-
     // 加倍系数 
     private float _baseRatio = 2.0f;
     private int _incremental = 0;

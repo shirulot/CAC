@@ -46,20 +46,20 @@ public class Buff : Unit
     }
 
     // buff等级提升
-    public virtual void BuffUp(Buff buff)
+    public virtual void BuffUp(int level)
     {
-        BeforeBuffUp(buff);
-        buffLevel += buff.buffLevel;
-        AfterBuffUp(buff);
+        BeforeBuffUp(level);
+        buffLevel += level;
+        AfterBuffUp(level);
     }
 
     // buff等级提升前事件
-    public virtual void BeforeBuffUp(Buff buff)
+    public virtual void BeforeBuffUp(int level)
     {
     }
 
     // buff等级提升后事件
-    public virtual void AfterBuffUp(Buff buff)
+    public virtual void AfterBuffUp(int level)
     {
     }
 
