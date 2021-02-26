@@ -1,13 +1,12 @@
 //光环专属子buff 一般情况下不受驱散等效果影响
 
-public class AureoleBuff : Buff
+public class AureoleBuff<T> : Buff where T : Buff
 {
-    protected Aureole parent;
-
-    public void Attach(Aureole parent, Character attachTarget)
+    protected int aureoleLevel;
+    public void Attach(Character attachTarget, int aureoleLevel = 1)
     {
+        this.aureoleLevel = aureoleLevel;
         this.attachTarget = attachTarget;
-        this.parent = parent;
     }
 
     public override BuffType buffType()

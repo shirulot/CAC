@@ -19,5 +19,9 @@ public class FiercePoison : Buff, IPoison
     {
         if (enable) attachTarget.Damage(_baseDamage + _growthDamage * buffLevel);
         BuffDown();
+        GetComponent(typeof(FiercePoison));
+
+
     }
+    
 }

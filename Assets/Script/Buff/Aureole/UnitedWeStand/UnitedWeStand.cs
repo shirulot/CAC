@@ -2,11 +2,11 @@ using System;
 using System.Collections.Generic;
 
 //团结之力光环
-public class UnitedWeStand : Aureole
+public class UnitedWeStand: Aureole <UnitedWeStandChildBuff>
 {
     int aureoleLevel = 0;
 
-    public  void Attach(int aureoleLevel)
+    public void Attach(int aureoleLevel)
     {
         this.aureoleLevel = aureoleLevel;
     }
@@ -34,24 +34,11 @@ public class UnitedWeStand : Aureole
         {
             var buff = child.BuffAttach<UnitedWeStandChildBuff>();
             // var buff =  child.Obj.AddComponent<UnitedWeStandChildBuff>();
-            buff.Attach(this, child, aureoleLevel);
-            AureoleMap[child] = buff;
+            buff.Attach( child, aureoleLevel);
+            // AureoleMap[child] = buff;
         });
     }
 
-    //光环效果失效时 清除buff [一回合内失效之类的效果对于光环也会进行清除]
-    public override void OnDisable()
-    {
-        foreach (var keyValuePair in AureoleMap)
-        {
-            var character = keyValuePair.Key;
-            if (character != null)
-            {
-                Buff buff = keyValuePair.Value;
-                character.BuffDetach(buff);
-            }
-        }
-    }
 
     //名称后缀的 (大、中、小)
     public String _GetNameLevel()

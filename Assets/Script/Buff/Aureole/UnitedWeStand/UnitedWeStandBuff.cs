@@ -2,15 +2,9 @@ using System;
 using UnityEngine;
 
 //
-public class UnitedWeStandChildBuff : AureoleBuff
+public class UnitedWeStandChildBuff : AureoleBuff<UnitedWeStandChildBuff>
 {
-    public void Attach(Aureole parent, Character attachTarget, int aureoleLevel = 1)
-    {
-        Attach(parent, attachTarget);
-        this._aureoleLevel = aureoleLevel;
-    }
 
-    private int _aureoleLevel;
 
     public override string Description() => "根据场地上我方角色数量上升";
 
@@ -31,9 +25,9 @@ public class UnitedWeStandChildBuff : AureoleBuff
     public void EffectCheck(bool isAttach = false)
     {
         //高于2级时倍率切换为1 否则为0.5倍
-        float ratio = _aureoleLevel <= 2 ? 0.5f : 1;
+        float ratio = aureoleLevel <= 2 ? 0.5f : 1;
 
-        var characters = Field.GetInstance().GetCharacters(parent.player);
+        var characters = Field.GetInstance().GetCharacters(attachTarget.Player);
         var newIncremental = Mathf.CeilToInt(characters.Count * ratio);
         var changeAttackIncremental = newIncremental - _attackIncremental;
         var changeAegisIncremental = newIncremental - _aegisIncremental;
@@ -41,7 +35,7 @@ public class UnitedWeStandChildBuff : AureoleBuff
         attachTarget.ChangeAttack(changeAttackIncremental);
         _attackIncremental = newIncremental;
 
-        if (_aureoleLevel >= 2)
+        if (aureoleLevel >= 2)
         {
             attachTarget.ChangeAttack(changeAttackIncremental);
             if (isAttach && changeAegisIncremental > 0)
@@ -56,7 +50,6 @@ public class UnitedWeStandChildBuff : AureoleBuff
     //buff去除事件
     public override void OnBuffDetach()
     {
-        parent = null;
         attachTarget = null;
     }
 
@@ -76,7 +69,7 @@ public class UnitedWeStandChildBuff : AureoleBuff
     //名称后缀的 (大、中、小)
     private String _GetNameLevel()
     {
-        switch (_aureoleLevel)
+        switch (aureoleLevel)
         {
             case 3:
                 return "大";

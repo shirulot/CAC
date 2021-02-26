@@ -8,7 +8,7 @@ public class BaseLinkChild : Character
     // 附加魔像幻影buff(说明性buff)
     public override void CharacterDeath(Player player)
     {
-        var golemPhantom = Obj.AddComponent<GolemPhantom>();
+        var golemPhantom = gameObject.AddComponent<GolemPhantom>();
         BuffAttach<GolemPhantom>(1);
     }
 }

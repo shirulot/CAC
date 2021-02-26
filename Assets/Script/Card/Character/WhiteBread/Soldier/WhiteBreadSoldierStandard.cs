@@ -19,7 +19,7 @@ public class WhiteBreadSoldierStandard : Character
 
     protected override void EffectAttach()
     {
-        var effect = Obj.AddComponent<StrikerEffect>();
+        var effect = gameObject.AddComponent<StrikerEffect>();
         effect.AttachCharacter(this);
     }
 }

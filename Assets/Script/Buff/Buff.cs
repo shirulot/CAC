@@ -102,7 +102,7 @@ public class Buff : Unit
         buffLevel -= downLevel;
         if (buffLevel <= 0)
         {
-            attachTarget.BuffDetach(this);
+            attachTarget.BuffDetach(GetType());
         }
     }
 }

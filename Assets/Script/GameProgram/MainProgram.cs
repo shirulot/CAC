@@ -7,7 +7,6 @@ public class MainProgram : MonoBehaviour
 {
     public static MainProgram Instance;
     private PlayerManager _playerManager;
-    [SerializeField] public GameObject GameProgram;
 
 
     private void Awake()
@@ -15,17 +14,14 @@ public class MainProgram : MonoBehaviour
         //游戏初始化时 保存游戏对象
         Instance = this;
         // 添加玩家、卡组
-        GameProgram.AddComponent<PlayerManager>();
-        GameProgram.AddComponent<DeckGroup>();
+        gameObject.AddComponent<PlayerManager>();
+        gameObject.AddComponent<DeckGroup>();
     }
 
     private void Start()
     {
         TakeTurns();
     }
-
-    
-    
     
 
     // 回合开始
@@ -83,14 +79,14 @@ public class MainProgram : MonoBehaviour
     // 角色执行战斗
     public void PreBattle(Character attacker)
     {
-        BattleManager battleManager = GameProgram.AddComponent<BattleManager>();
+        BattleManager battleManager = gameObject.AddComponent<BattleManager>();
         battleManager.PreBattle(attacker);
     }
 
     // 取消战斗
     public void CancelBattle()
     {
-        var battleManager = GameProgram.GetComponent<BattleManager>();
+        var battleManager = gameObject.GetComponent<BattleManager>();
         battleManager.Cancel();
         Destroy(battleManager);
     }
@@ -98,7 +94,7 @@ public class MainProgram : MonoBehaviour
     //进行战斗
     public void BattleAction(Character target)
     {
-        var battleManager = GameProgram.GetComponent<BattleManager>();
+        var battleManager = gameObject.GetComponent<BattleManager>();
         if (battleManager == null) return;
         battleManager.Battle(target);
     }

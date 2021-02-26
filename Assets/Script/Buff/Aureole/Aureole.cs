@@ -2,10 +2,10 @@ using System;
 using System.Collections.Generic;
 
 // 光环效果 一般为魔像衍生
-public class Aureole : Unit
+public class Aureole<T> : Unit where T : Buff
 {
     //用来存放对应
-    public Dictionary<Character, Buff> AureoleMap = new Dictionary<Character, Buff>();
+    // public Dictionary<Character, Buff> AureoleMap = new Dictionary<Character, Buff>();
 
     private bool enable;
 
@@ -38,7 +38,14 @@ public class Aureole : Unit
     {
     }
 
+    //光环效果失效时 清除buff [一回合内失效之类的效果对于光环也会进行清除]
     public virtual void OnDisable()
     {
+        var children = GetComponents<T>();
+        foreach (var child in children)
+        {
+            child.OnBuffDetach();
+            Destroy(child);
+        }
     }
 }

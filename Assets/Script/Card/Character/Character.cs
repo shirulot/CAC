@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.SceneManagement;
 using UnityEngine;
 
 //角色卡
@@ -8,9 +9,6 @@ public class Character : Card
 {
     //魔术
     public Magic magic;
-
-    //当前角色身上的buff
-    List<Buff> buffList;
 
     List<Effect> effectList;
 
@@ -21,12 +19,11 @@ public class Character : Card
     public int LastAttackIncrement = 0;
 
     public Player Player;
-    public GameObject Obj;
+    // public GameObject Obj;
     private CharacterState _state = new CharacterState();
 
     public virtual void CharacterDeath(Player player)
     {
-        Obj = new GameObject();
         this.Player = player;
         EffectAttach();
     }
@@ -115,29 +112,25 @@ public class Character : Card
         T buff;
         if (holderBuff == null)
         {
-             buff = gameObject.AddComponent<T>();
-             buff.BuffAttach();
+            buff = gameObject.AddComponent<T>();
+            buff.BuffAttach();
         }
         else
-        { 
+        {
             buff = holderBuff;
             holderBuff.BuffUp(level);
         }
+
         return buff;
     }
 
     //buff清除
-    public virtual void BuffDetach(Buff buff)
+    public virtual void BuffDetach(Type type) 
     {
-        try
-        {
-            buffList.Remove(buff);
-            buff.OnBuffDetach();
-        }
-        catch (Exception e)
-        {
-            Console.WriteLine("BuffDettach : " + e);
-        }
+            var buff = GetComponentInChildren(type);
+            if (buff == null) return;
+            (buff as Buff)?.OnBuffDetach();
+            Destroy(buff);
     }
 
     //伤害计算暂不做过于复杂逻辑 

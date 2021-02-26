@@ -33,7 +33,7 @@ public class Golem : Card
     public GolemType Type;
 
     // 光环
-    public Aureole Aureole;
+    // public Aureole Aureole;
 
     public override void OnTurnStart()
     {

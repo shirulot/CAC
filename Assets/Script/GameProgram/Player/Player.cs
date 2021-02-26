@@ -21,11 +21,11 @@ public class Player : MonoBehaviour
     public int MaxActionPoint = 100;
 
     // 光环
-    private List<Aureole> AureoleList = new List<Aureole>();
+    // private List<Aureole> AureoleList = new List<Aureole>();
 
     //玩家对象
-    [SerializeField] 
-    GameObject PlayerObj;
+    // [SerializeField] 
+    // GameObject PlayerObj;
 
 
     // private void Awake()
@@ -67,20 +67,20 @@ public class Player : MonoBehaviour
         ActionPoint += point;
     }
 
-    // 启用/禁用 光环
-    public void setAureoleEnable(Aureole target, bool enable)
-    {
-        var hasTarget = AureoleList.Contains(target);
-        if (enable)
-        {
-            if (!hasTarget)
-            {
-                AureoleList.Add(target);
-            }
-
-            target.setEnabled(enable, this);
-        }
-    }
+    // // 启用/禁用 光环
+    // public void setAureoleEnable(Aureole target, bool enable)
+    // {
+    //     var hasTarget = AureoleList.Contains(target);
+    //     if (enable)
+    //     {
+    //         if (!hasTarget)
+    //         {
+    //             AureoleList.Add(target);
+    //         }
+    //
+    //         target.setEnabled(enable, this);
+    //     }
+    // }
 
 
     //分数变更 
