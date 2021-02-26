@@ -1,9 +1,11 @@
 //魔像
 
 
+using UnityEngine;
+
 public enum GolemType
 {
-    // 连接型:存在link角色 主体主要为占位单位。只有主体会接受伤害 HP为0时破坏图腾以及角色单位
+    // 连接型:存在link角色 主体主要为占位单位。只有主体会接受伤害 HP为0时破坏图腾以及角色单位 
     Link,
 
     // 光环型:为特定条件下的角色附加buff，主体为图腾 HP为0时破坏
@@ -15,10 +17,11 @@ public enum GolemType
     //TODO 攻击型: 存在较低HP 拥有较远的攻击范围 强攻击
 }
 
+// 通常因为位置原因 golem的破坏难度比通常角色要高(尤其是link型)  所以golem可以适当的提升破坏score
 public class Golem : Card
 {
     // golem存在hp  
-    public int HP = 10;
+    public int HP ;
 
     // 连接数
     public int SoulLink;
@@ -42,23 +45,28 @@ public class Golem : Card
     // 同时检查link角色是否在该魔像连接格 如果是 也进行回收并进行伤害结算
     private void _linkCheck()
     {
-        //回合开始时检查
-    }
-
-    public void Damage(int damage)
-    {
-        OnBeforeDamage();
-        HP -= damage;
-        OnAfterDamage();
-        if (HP <= 0) Break();
-        
+        if (Type == GolemType.Link)
+        {
+            //回合开始时检查
+            bool isLink =  Random.Range(0, 1) != 1;
+            if (isLink)
+            {
+           
+            }
+            else
+            {
+                Charged(SoulLink,Character);
+                SoulLink--;
+            }
+        }
+      
     }
 
     public void OnBeforeDamage()
     {
     }
 
-    public void  OnAfterDamage()
+    public void OnAfterDamage()
     {
         
     }
@@ -69,8 +77,8 @@ public class Golem : Card
         MainProgram.Instance.Break(this);
     }
 
-    //充能（受到伤害）
-    public void Charged(int attack)
+    //充能（受到伤害） 
+    public virtual void Charged(int point,Character attacker)
     {
         
     }

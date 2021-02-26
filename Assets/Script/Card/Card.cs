@@ -57,4 +57,9 @@ public class Card : Unit, IComparable
     {
         
     }
+
+    public virtual void EffectLaunch()
+    {
+        
+    }
 }

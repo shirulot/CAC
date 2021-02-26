@@ -24,14 +24,14 @@ public class Character : Card
     public GameObject Obj;
     private CharacterState _state = new CharacterState();
 
-    public Character(Player player)
+    public virtual void CharacterDeath(Player player)
     {
         Obj = new GameObject();
         this.Player = player;
         EffectAttach();
     }
 
-    public CharacterState State
+    public  CharacterState State
     {
         get { return _state; }
     }
@@ -232,9 +232,8 @@ public class Character : Card
         }
         else if (target is Golem targetGolem)
         {
-            targetGolem.Charged(State.Attack);
+            targetGolem.Charged(State.Attack,this);
         }
-       
     }
 
     public void MagicAttach(Magic magic)
