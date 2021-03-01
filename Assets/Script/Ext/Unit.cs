@@ -77,7 +77,7 @@ public class Unit : MonoBehaviour
     }
 
     // 角色入场 【容易形成误解的命名】  
-    public virtual void OnCharacterDeath()
+    public virtual void OnCharacterDeath(Character target)
     {
     }
 

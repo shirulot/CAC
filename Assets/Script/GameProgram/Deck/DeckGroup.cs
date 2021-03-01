@@ -16,13 +16,13 @@ public class DeckGroup : MonoBehaviour
         InitCurrentDeck();
     }
 
-    //TODO 初始化玩家卡组列表 本地版根据本地缓存 
+    //T DO 初始化玩家卡组列表 本地版根据本地缓存 
     private void InitPlayerDeckList()
     {
         
     }
     
-    //TODO 初始化当前已选中卡组 伪代码
+    //t do 初始化当前已选中卡组 伪代码
     private void InitCurrentDeck()
     {
         CurrentDeck = new Deck();

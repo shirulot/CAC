@@ -10,7 +10,7 @@ public enum GolemType
 
     // 光环型:为特定条件下的角色附加buff，主体为图腾 HP为0时破坏
     Aureole,
-    
+
     // 充能型:初始存在较高HP 只接受自己角色的攻击,HP为0时破坏 破坏时发动强力效果
     Charge,
     //TODO 载具型: 存在普通HP 拥有较远的攻击范围 需要驾驶员 在有驾驶员时不会受到攻击
@@ -20,8 +20,9 @@ public enum GolemType
 // 通常因为位置原因 golem的破坏难度比通常角色要高(尤其是link型)  所以golem可以适当的提升破坏score
 public class Golem : Card
 {
+    
     // golem存在hp  
-    public int HP ;
+    public int HP;
 
     // 连接数
     public int SoulLink;
@@ -30,10 +31,12 @@ public class Golem : Card
     public Character Character;
 
     // 类型
-    public GolemType Type;
+    // public GolemType Type;
 
     // 光环
     // public Aureole Aureole;
+
+    private GolemType GetGolemType() => GolemType.Charge;
 
     public override void OnTurnStart()
     {
@@ -45,22 +48,21 @@ public class Golem : Card
     // 同时检查link角色是否在该魔像连接格 如果是 也进行回收并进行伤害结算
     private void _linkCheck()
     {
-        if (Type == GolemType.Link)
+        if (GetGolemType() == GolemType.Link)
         {
             //回合开始时检查
-            bool isLink =  Random.Range(0, 1) != 1;
+            bool isLink = Random.Range(0, 1) != 1;
             if (isLink)
             {
-           
             }
             else
             {
-                Charged(SoulLink,Character);
+                Charged(SoulLink, Character);
                 SoulLink--;
             }
         }
-      
     }
+
 
     public void OnBeforeDamage()
     {
@@ -68,7 +70,6 @@ public class Golem : Card
 
     public void OnAfterDamage()
     {
-        
     }
 
     public void Break()
@@ -78,8 +79,7 @@ public class Golem : Card
     }
 
     //充能（受到伤害） 
-    public virtual void Charged(int point,Character attacker)
+    public virtual void Charged(int point, Character attacker)
     {
-        
     }
 }

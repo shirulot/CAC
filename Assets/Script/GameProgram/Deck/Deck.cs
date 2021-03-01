@@ -70,7 +70,7 @@ public class Deck : MonoBehaviour
             if (card.CardInfo.activeId == activeId) return card;
         }
 
-        return Card.NewBlankCard();
+        return null;
     }
 
     public List<Card> GetDeckAllCard() => _list;

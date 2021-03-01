@@ -54,7 +54,7 @@ public class UnitedWeStandChildBuff : AureoleBuff<UnitedWeStandChildBuff>
     }
 
     // 角色入场
-    public override void OnCharacterDeath()
+    public override void OnCharacterDeath(Character character)
     {
         EffectCheck();
     }

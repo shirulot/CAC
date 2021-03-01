@@ -38,13 +38,13 @@ public class ExtraActionProgram
     public static ExtraActionProgram GetInstance() => _instance ?? (_instance = new ExtraActionProgram());
 
     // 查询返回卡片对象
-    public Card FindCard(ExtraTag tag) => (_lifecycleMap[tag] ?? Card.NewBlankCard()) as Card;
+    public Card FindCard(ExtraTag tag) => _lifecycleMap[tag] as Card;
 
     // 查询玩家
     public Player FindPlayer(ExtraTag tag) => _playerMap[tag];
 
     // 查询buff ability 也可以用于查询卡片
-    public Unit FindEffect(ExtraTag tag) => _lifecycleMap[tag] ?? Card.NewBlankCard();
+    public Unit FindEffect(ExtraTag tag) => _lifecycleMap[tag] ;
 
     // 保存
     public void Save(ExtraTag tag, Unit unit)

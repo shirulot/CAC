@@ -6,9 +6,14 @@ using UnityEngine.EventSystems;
 public class Card : Unit, IComparable
 {
 
-    protected Card()
-    {
-    } 
+    // 卡片预制体
+    [SerializeField]
+    public GameObject CardPrefab;
+    
+    // 单位预制体 (当前设想:魔术没有)
+    [SerializeField]
+    public GameObject UnitPrefab;
+
 
     public readonly bool IsBlank = false;
 
@@ -17,14 +22,7 @@ public class Card : Unit, IComparable
 
     //单阶卡片 单阶卡片强度不依照阶级而定 单纯受卡片效果影响 强度维持在 1-2阶水准
     public virtual bool IsSingle() => true;
-    
-    public Card(bool isBlank)
-    {
-        IsBlank = isBlank;
-    }
 
-    //创建空白卡
-    public static Card NewBlankCard() => new Card(true);
 
 
     // 根据游戏id排序
