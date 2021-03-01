@@ -114,4 +114,15 @@ public class PlayerManager : MonoBehaviour
     {
         foreach (var t in _players) t.InitDeck();
     }
+
+    // TODO 待实现
+    public Player FindPlayer(Card card)
+    {
+        return _activePlayer;
+    }
+
+    public bool CardIsCurrentPlayerProperty(Card card)
+    {
+        return FindPlayer(card) == CurrentPlayer;
+    }
 }

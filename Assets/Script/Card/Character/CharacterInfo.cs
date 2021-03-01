@@ -1,7 +1,7 @@
 // 10
 // 3/8作为基础模板 
 
-public class CharacterState
+public class CharacterInfo
 {
     //角色被破坏获得的分数
     public int Score;
@@ -57,7 +57,7 @@ public class CharacterState
     //回避率
     public int Avoid = 5;
 
-    public CharacterState Init(
+    public CharacterInfo Init(
         int hitRate = 100,
         int counterCount = 1,
         int attackCount = 1,

@@ -15,8 +15,7 @@ public class CompositeGolemSummonMagic : Golem
     private void Awake()
     {
         CardInfo.Init("9999", "0001", 3, 1);
-        HP = 12;
-        SoulLink = 4;
+        Info.Init(GolemType.Link, HP: 12, soulLink: 4);
     }
 
 
@@ -31,7 +30,7 @@ public class CompositeGolemSummonMagic : Golem
         public void Awake()
         {
             CardInfo.Init("9999", "0001", 0, 1, "02");
-            State.Init(attack: 4, score: 25);
+            Info.Init(attack: 4, score: 25);
         }
 
         public override string Name() => "复合型魔术土偶";

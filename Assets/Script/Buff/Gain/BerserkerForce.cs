@@ -15,7 +15,7 @@ public class BerserkerForce : Gain
     {
         if (enable)
         {
-            _incremental = attachTarget.State.Attack;
+            _incremental = attachTarget.Info.Attack;
             attachTarget.ChangeAttack(_incremental);
         }
     }

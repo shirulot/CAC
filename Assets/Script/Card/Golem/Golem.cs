@@ -20,27 +20,14 @@ public enum GolemType
 // 通常因为位置原因 golem的破坏难度比通常角色要高(尤其是link型)  所以golem可以适当的提升破坏score
 public class Golem : Card
 {
-    
-    // golem存在hp  
-    public int HP;
-
-    // 连接数
-    public int SoulLink;
-
     // 角色
     public Character Character;
 
-    
     //Character 预制体
-    [SerializeField] 
-    public GameObject ChildUnitPrefab;
-    // 类型
-    // public GolemType Type;
+    [SerializeField] public GameObject ChildUnitPrefab;
 
-    // 光环
-    // public Aureole Aureole;
 
-     public GolemType GetGolemType() => GolemType.Charge;
+    public GolemInfo Info = new GolemInfo();
 
     public override void OnTurnStart()
     {
@@ -52,7 +39,7 @@ public class Golem : Card
     // 同时检查link角色是否在该魔像连接格 如果是 也进行回收并进行伤害结算
     private void _linkCheck()
     {
-        if (GetGolemType() == GolemType.Link)
+        if (Info.Type == GolemType.Link)
         {
             //回合开始时检查
             bool isLink = Random.Range(0, 1) != 1;
@@ -61,8 +48,8 @@ public class Golem : Card
             }
             else
             {
-                Charge(SoulLink, Character);
-                SoulLink--;
+                Charge(Info.SoulLink, Character);
+                Info.SoulLink--;
             }
         }
     }
@@ -85,5 +72,30 @@ public class Golem : Card
     //充能（受到伤害） 
     public virtual void Charge(int point, Card attacker)
     {
+        var IsCurrent = GetComponent<PlayerManager>().CardIsCurrentPlayerProperty(attacker);
+        Info.HP = IsCurrent ? Info.HP - point : Info.HP + point;
+        if (Info.HP <= 0)
+        {
+            Info.HP = Info.StandradHP;
+            ChargeComplete();
+            Info.Used++;
+        }
+
+        if (Info.HP >= Info.StandradHP * 2 || Info.Used >= Info.Count) GolemBreak(attacker);
+    }
+
+    //单次充能完成发动的能力
+    public virtual void ChargeComplete()
+    {
+        //破坏时将事件传递给所有单位
+        foreach (var t in GetComponents<Card>()) t.OnChargeComplete(this);
+    }
+
+    /// 魔像破坏 
+    /// <param name="breaker"> 破坏当前魔像的对象 </param>
+    private void GolemBreak(Card breaker)
+    {
+        //破坏时将事件传递给所有单位
+        foreach (var t in GetComponents<Card>()) t.OnGolemBreak(breaker,this);
     }
 }

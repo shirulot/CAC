@@ -36,8 +36,8 @@ public class BattleManager : MonoBehaviour
     // 反击
     private void _counterAttack(Character counterAttackCharacter)
     {
-        if (counterAttackCharacter.CanCounterAttack() && !_attacker.State.IsBreak &&
-            !counterAttackCharacter.State.IsBreak)
+        if (counterAttackCharacter.CanCounterAttack() && !_attacker.Info.IsBreak &&
+            !counterAttackCharacter.Info.IsBreak)
         {
             counterAttackCharacter.OnBeforeCounterattack(_attacker);
             //反击结算
@@ -52,7 +52,7 @@ public class BattleManager : MonoBehaviour
     private void ComboHit(Character targetCharacter)
     {
         bool wantCombo = true;
-        while (_attacker.State.Attack > 0 && wantCombo)
+        while (_attacker.Info.Attack > 0 && wantCombo)
         {
             if (GetComponent<PlayerManager>().GetCurrentActivePlayer() == _attacker.Player)
             {
@@ -64,12 +64,12 @@ public class BattleManager : MonoBehaviour
                     //连击
                     CombatSettlement(_attacker, targetCharacter);
                     _attacker.OnAfterComboHit(targetCharacter);
-                    if (targetCharacter.State.SuperCounter)
+                    if (targetCharacter.Info.SuperCounter)
                     {
                         targetCharacter.OnBeforeCounterattack(_attacker);
                         CombatSettlement(targetCharacter, _attacker);
                         //超反击
-                        _attacker.Damage(targetCharacter.State.Attack, targetCharacter.IsPiercing());
+                        _attacker.Damage(targetCharacter.Info.Attack, targetCharacter.IsPiercing());
                         targetCharacter.OnBeforeCounterattack(_attacker);
                     }
                 }
@@ -82,14 +82,14 @@ public class BattleManager : MonoBehaviour
     // 检查破坏 并结算分数
     private void CheckScore(Character target)
     {
-        if (target.State.IsBreak) _attacker.Player.ScoreChange(target.State.Score);
+        if (target.Info.IsBreak) _attacker.Player.ScoreChange(target.Info.Score);
     }
 
     //战斗结算
     private void CombatSettlement(Character attacker, Character target)
     {
         // 命中结算
-        var attackerHitRate = attacker.State.HitRate - attacker.State.Avoid;
+        var attackerHitRate = attacker.Info.HitRate - attacker.Info.Avoid;
         // 是否命中
         if (attackerHitRate > 0 && attackerHitRate > Random.Range(0, 100))
         {

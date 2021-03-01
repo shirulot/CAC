@@ -50,13 +50,18 @@ public class Card : Unit, IComparable
     {
         
     }
-
+    
     public virtual void OnMouseClick()
     {
         
     }
 
     public virtual void EffectLaunch()
+    {
+        
+    }
+    // 当魔像充能完成时
+    public virtual void OnChargeComplete(Golem golem)
     {
         
     }

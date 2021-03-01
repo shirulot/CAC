@@ -20,7 +20,7 @@ public class Character : Card
 
     public Player Player;
     // public GameObject Obj;
-    private CharacterState _state = new CharacterState();
+    private CharacterInfo _info = new CharacterInfo();
 
     public virtual void CharacterDeath(Player player)
     {
@@ -28,9 +28,9 @@ public class Character : Card
         EffectAttach();
     }
 
-    public CharacterState State
+    public CharacterInfo Info
     {
-        get { return _state; }
+        get { return _info; }
     }
 
 
@@ -92,7 +92,7 @@ public class Character : Card
     // Hp变动 增加/减少
     public virtual void changeHp(int incremental)
     {
-        _state.Hp += incremental;
+        _info.Hp += incremental;
     }
 
 
@@ -156,12 +156,12 @@ public class Character : Card
         }
         else
         {
-            State.Aegis -= damage;
+            Info.Aegis -= damage;
             // 护盾无法抵消伤害 对溢出伤害进行计算
-            if (State.Aegis < 0)
+            if (Info.Aegis < 0)
             {
-                changeHp(State.Aegis);
-                State.Aegis = 0;
+                changeHp(Info.Aegis);
+                Info.Aegis = 0;
             }
         }
     }
@@ -173,14 +173,14 @@ public class Character : Card
 
     public virtual void ChangeAttack(int incremental)
     {
-        State.Attack += incremental;
+        Info.Attack += incremental;
         LastAttackIncrement = incremental;
     }
 
     public virtual void AegisChange(int incremental)
     {
-        var temp = State.Aegis + incremental;
-        State.Aegis = temp <= 0 ? 0 : incremental;
+        var temp = Info.Aegis + incremental;
+        Info.Aegis = temp <= 0 ? 0 : incremental;
     }
 
 
@@ -194,12 +194,12 @@ public class Character : Card
     // 连击攻击前
     public virtual void OnBeforeComboHit(Character targetCharacter)
     {
-        if (!State.SuperComboHit)
+        if (!Info.SuperComboHit)
         {
-            int lastAttack = State.Attack;
-            var decrement = Mathf.FloorToInt(State.Attack / 2f);
+            int lastAttack = Info.Attack;
+            var decrement = Mathf.FloorToInt(Info.Attack / 2f);
 
-            LastAttackIncrement = lastAttack - State.Attack;
+            LastAttackIncrement = lastAttack - Info.Attack;
             SingleTurnMemo[SingleTurn.Attack] += LastAttackIncrement;
             //TODO 攻击力变动事件广播 
         }
@@ -222,11 +222,11 @@ public class Character : Card
         if (target is Character targetCharacter)
         {
             // 伤害结算
-            targetCharacter.Damage(State.Attack, IsPiercing());
+            targetCharacter.Damage(Info.Attack, IsPiercing());
         }
         else if (target is Golem targetGolem)
         {
-            targetGolem.Charge(State.Attack, this);
+            targetGolem.Charge(Info.Attack, this);
         }
     }
 

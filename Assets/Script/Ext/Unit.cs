@@ -96,8 +96,8 @@ public class Unit : MonoBehaviour
     {
     }
 
-    // 魔像入场
-    public virtual void OnGolemBreak()
+    // 魔像破坏
+    public virtual void OnGolemBreak(Card breaker, Golem golem)
     {
     }
 
