@@ -121,11 +121,4 @@ public class MainProgram : MonoBehaviour
     public void Break(Card card)
     {
     }
-
-
-    //召唤角色
-    public T Summon<T>(Card card) where T : Character
-    {
-        return null;
-    }
 }

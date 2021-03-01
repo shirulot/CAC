@@ -15,16 +15,14 @@ public class GolemSummonMagic : Golem
     private void Awake()
     {
         CardInfo.Init("9999", "0001", 2, 1);
-        HP = 7;
-        SoulLink = 3;
+        HP = 10;
+        SoulLink = 4;
     }
 
-    //Character 预制体
-    [SerializeField] GameObject MagicGolemPrefab;
 
     public override void EffectLaunch()
     {
-        Character = GetComponent<SummonSystem>().CharacterSummon<LinkChild>(MagicGolemPrefab, new Vector3(), this);
+        Character = GetComponent<SummonSystem>().CharacterSummon<LinkChild>(ChildUnitPrefab, new Vector3(), this);
     }
 
     //link角色
@@ -33,7 +31,8 @@ public class GolemSummonMagic : Golem
 
         public void Awake()
         {
-            CardInfo.Init("9999", "0001", 0, 1);
+            CardInfo.Init("9999", "0001", 0, 1,"01");
+            State.Init(attack: 3, score: 20);
         }
 
         public override string Name() => "魔术土偶";

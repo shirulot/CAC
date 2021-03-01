@@ -226,7 +226,7 @@ public class Character : Card
         }
         else if (target is Golem targetGolem)
         {
-            targetGolem.Charged(State.Attack, this);
+            targetGolem.Charge(State.Attack, this);
         }
     }
 

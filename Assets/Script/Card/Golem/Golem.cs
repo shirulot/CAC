@@ -30,13 +30,17 @@ public class Golem : Card
     // 角色
     public Character Character;
 
+    
+    //Character 预制体
+    [SerializeField] 
+    public GameObject ChildUnitPrefab;
     // 类型
     // public GolemType Type;
 
     // 光环
     // public Aureole Aureole;
 
-    private GolemType GetGolemType() => GolemType.Charge;
+     public GolemType GetGolemType() => GolemType.Charge;
 
     public override void OnTurnStart()
     {
@@ -57,7 +61,7 @@ public class Golem : Card
             }
             else
             {
-                Charged(SoulLink, Character);
+                Charge(SoulLink, Character);
                 SoulLink--;
             }
         }
@@ -79,7 +83,7 @@ public class Golem : Card
     }
 
     //充能（受到伤害） 
-    public virtual void Charged(int point, Character attacker)
+    public virtual void Charge(int point, Card attacker)
     {
     }
 }
