@@ -20,16 +20,13 @@ public class MainProgram : MonoBehaviour
 
     private void Start()
     {
-        
-        TakeTurns();
+    }
+
+    public void GameStart()
+    {
+        GetComponent<TurnManager>().TurnStart();
     }
     
-
-    // 回合开始
-    public void TurnStart()
-    {
-        foreach (var t in GetComponents<Card>()) t.OnTurnStart();
-    }
 
     //抽牌
     public void CardDraw(Player player)
@@ -43,19 +40,6 @@ public class MainProgram : MonoBehaviour
     }
 
     private delegate Action MethodDelegate(Card card);
-
-    public void TurnEnd()
-    {
-        TakeTurns();
-    }
-
-    public void CardAction()
-    {
-    }
-
-    public void CharacterDisappear()
-    {
-    }
 
     // 角色执行战斗
     public void PreBattle(Character attacker)
@@ -79,13 +63,7 @@ public class MainProgram : MonoBehaviour
         if (battleManager == null) return;
         battleManager.Battle(target);
     }
-
-    // 回合轮换/当前玩家结束回合 
-    public void TakeTurns()
-    {
-        //TODO 调用所有方法的OnTurnEnd 方法
-        _playerManager.TakePlayerTurns();
-    }
+    
 
     // 玩家失败退场
     public void Defeated(Player player)

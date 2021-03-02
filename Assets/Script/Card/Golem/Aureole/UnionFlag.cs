@@ -13,7 +13,7 @@ public class UnionFlag : Golem
         var golem = GetComponent<SummonSystem>().GolemSummon<UnionFlag>(UnitPrefab, new Vector3());
         unitedWeStand = golem.gameObject.AddComponent<UnitedWeStand>();
         unitedWeStand.Attach(1);
-        unitedWeStand.setEnabled(true, GetComponent<PlayerManager>().CurrentPlayer);
+        unitedWeStand.setEnabled(true, GetComponent<PlayerManager>().GetCurrentPlayer());
     }
 
     public override void ChargeComplete()

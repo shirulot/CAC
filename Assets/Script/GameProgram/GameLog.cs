@@ -8,7 +8,7 @@ public class GameLog :MonoBehaviour
     private Dictionary<String, LogEvent> dictionary = new Dictionary<String, LogEvent>();
     
     //TODO 获取玩家待实现 
-    public void Save(string eventName, Object obj) => dictionary.Add(eventName, new LogEvent(1,GetComponent<PlayerManager>().CurrentPlayer,obj));
+    public void Save(string eventName, Object obj) => dictionary.Add(eventName, new LogEvent(1,GetComponent<PlayerManager>().GetCurrentPlayer(),obj));
     
 }
 

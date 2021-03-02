@@ -8,6 +8,6 @@ public class MenuTurnEnd : MonoBehaviour
     // 回合结束。轮换
     private void _turnEnd()
     {
-        MainProgram.Instance.TakeTurns();
+        
     }
 }

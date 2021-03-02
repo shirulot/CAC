@@ -54,7 +54,7 @@ public class BattleManager : MonoBehaviour
         bool wantCombo = true;
         while (_attacker.Info.Attack > 0 && wantCombo)
         {
-            if (GetComponent<PlayerManager>().GetCurrentActivePlayer() == _attacker.Player)
+            if (GetComponent<PlayerManager>().GetActivePlayer() == _attacker.Player)
             {
                 // TODO 弹出弹窗 询问是否需要连击
                 // 想要连击

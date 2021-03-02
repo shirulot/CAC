@@ -22,7 +22,7 @@ public class Leader : Unit
     private void CheckCardRecycle()
     {
         if (_depositCountDown >= 0) return;
-        GetComponent<PlayerManager>().CurrentPlayer.Deck.DepositRecycle(_depositList);
+        GetComponent<PlayerManager>().GetCurrentPlayer().Deck.DepositRecycle(_depositList);
     }
 
     //卡片寄存
@@ -39,7 +39,7 @@ public class Leader : Unit
     {
         //无寄存卡
         if (_depositList.Count <= 0) return;
-        var currentPlayer = GetComponent<PlayerManager>().CurrentPlayer;
+        var currentPlayer = GetComponent<PlayerManager>().GetCurrentPlayer();
         //点数足够取回
         if (currentPlayer.ActionPoint > _depositList.Count * GetBackPoint)
         {

@@ -94,4 +94,28 @@ public class Player : MonoBehaviour
     {
         
     }
+
+    public int Order;
+
+    public void OnTurnEnd()
+    {
+        var pm = GetComponent<PlayerManager>();
+        var activeIndex = pm.ActiveIndex;
+        var IsCurrent = pm.ActiveIndex == pm.CurrentIndex;
+        
+    }
+
+    public void OnCardDraw()
+    {
+        //抽卡
+        var pm = GetComponent<PlayerManager>();
+        var activeIndex = pm.ActiveIndex;
+        var IsCurrent = pm.ActiveIndex == pm.CurrentIndex;
+        CardDrawAnim(IsCurrent);
+    }
+    
+    private void CardDrawAnim(bool isCurrent)
+    {
+            
+    }
 }

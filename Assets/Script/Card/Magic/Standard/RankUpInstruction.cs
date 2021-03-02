@@ -28,7 +28,7 @@ public class RankUpInstruction : Magic
         if (targets != null && targets.Count > 0)
         {
             var cardInfoActiveId = targets[0].CardInfo.activeId + 10;
-            var currentPlayer = GetComponent<PlayerManager>().CurrentPlayer;
+            var currentPlayer = GetComponent<PlayerManager>().GetCurrentPlayer();
             var deck = currentPlayer.Deck;
             var hand = currentPlayer.Hand;
             var card = deck.FindCardByActiveId(cardInfoActiveId);

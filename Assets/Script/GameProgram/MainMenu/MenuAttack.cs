@@ -8,6 +8,6 @@ public class MenuAttack : MonoBehaviour
     // 回合结束。轮换
     private void _attack()
     {
-        MainProgram.Instance.TakeTurns();
+       
     }
 }
