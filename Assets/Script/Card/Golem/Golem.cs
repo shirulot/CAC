@@ -25,7 +25,7 @@ public class Golem : Card
 
     //Character 预制体
     [SerializeField] public GameObject ChildUnitPrefab;
-
+    
 
     public GolemInfo Info = new GolemInfo();
 

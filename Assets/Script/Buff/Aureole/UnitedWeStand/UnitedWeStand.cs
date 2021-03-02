@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 
 //团结之力光环
-public class UnitedWeStand: Aureole <UnitedWeStandChildBuff>
+public class UnitedWeStand : Aureole
 {
     int aureoleLevel = 0;
 
@@ -10,6 +10,8 @@ public class UnitedWeStand: Aureole <UnitedWeStandChildBuff>
     {
         this.aureoleLevel = aureoleLevel;
     }
+
+    public override Type GetChildBuffType() => typeof(UnitedWeStandChildBuff);
 
     public override string Name()
     {
@@ -34,11 +36,20 @@ public class UnitedWeStand: Aureole <UnitedWeStandChildBuff>
         {
             var buff = child.BuffAttach<UnitedWeStandChildBuff>();
             // var buff =  child.Obj.AddComponent<UnitedWeStandChildBuff>();
-            buff.Attach( child, aureoleLevel);
+            buff.Attach(child, aureoleLevel);
             // AureoleMap[child] = buff;
         });
     }
 
+    public void AureoleLevelChange(int level)
+    {
+        this.aureoleLevel += level;
+        GetComponent<Field>().GetCharacters().ForEach(delegate(Character child)
+            {
+                child.GetComponent<UnitedWeStandChildBuff>().BuffLevelChange(level);
+            }
+        );
+    }
 
     //名称后缀的 (大、中、小)
     public String _GetNameLevel()

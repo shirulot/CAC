@@ -7,7 +7,13 @@ public class SummonSystem : MonoBehaviour
     {
         //TODO 具体位置需要选择
         GameObject obj = Instantiate(prefab, position,Quaternion.identity,prefab.transform);
-        
+        return obj.AddComponent<T>();
+    }
+    
+    public T GolemSummon<T>(GameObject prefab,Vector3 position ) where T : Golem
+    {
+        //TODO 具体位置需要选择
+        GameObject obj = Instantiate(prefab, position,Quaternion.identity,prefab.transform);
         return obj.AddComponent<T>();
     }
 }

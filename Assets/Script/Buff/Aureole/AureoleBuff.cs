@@ -1,5 +1,7 @@
 //光环专属子buff 一般情况下不受驱散等效果影响
 
+using System;
+
 public class AureoleBuff<T> : Buff where T : Buff
 {
     protected int aureoleLevel;
@@ -30,5 +32,17 @@ public class AureoleBuff<T> : Buff where T : Buff
     public override void BuffUp(int level = 1)
     {
         // base.BuffUp(buff);
+    }
+
+    public void BuffLevelChange(int level)
+    {
+        if (level > 0)
+        {
+            BuffUp(level);
+        }
+        else
+        {
+            BuffDown(Math.Abs(level));
+        }
     }
 }
