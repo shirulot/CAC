@@ -26,7 +26,7 @@ public class PlayerManager : MonoBehaviour
     private MainProgram _program;
 
     // log
-    private ExtraActionProgram _extraActionProgram;
+    private GameLog _gameLog;
 
 
     // 获取当前玩家
@@ -57,8 +57,8 @@ public class PlayerManager : MonoBehaviour
             //该玩家开始新回合
             _activePlayer.NewTurn();
             // 将当前行动玩家更换为当前玩家
-            _extraActionProgram = ExtraActionProgram.GetInstance();
-            _extraActionProgram.SavePlayer(ExtraTag.ActionTurnPlayer, _activePlayer);
+            _gameLog = GetComponent<GameLog>();
+            _gameLog.Save("ActionTurnPlayer", _activePlayer);
             CardDraw();
         }
         else

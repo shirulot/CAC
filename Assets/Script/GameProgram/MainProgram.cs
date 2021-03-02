@@ -20,6 +20,7 @@ public class MainProgram : MonoBehaviour
 
     private void Start()
     {
+        
         TakeTurns();
     }
     
@@ -43,24 +44,12 @@ public class MainProgram : MonoBehaviour
 
     private delegate Action MethodDelegate(Card card);
 
-    // // 攻击前->被攻击前-> 战斗结算 ->攻击后->被攻击后->反击前->反击后
-    // public void Attack()
-    // {
-    //     Character attacker = (Character) ExtraActionProgram.GetInstance().FindCard(ExtraTag.ActionCharacter);
-    //     Character targetCharacter = (Character) ExtraActionProgram.GetInstance().FindCard(ExtraTag.TargetCharacter);
-    // }
-
-
     public void TurnEnd()
     {
+        TakeTurns();
     }
 
     public void CardAction()
-    {
-    }
-
-    //角色登场
-    public void CharacterDeath(Card card)
     {
     }
 
@@ -68,18 +57,10 @@ public class MainProgram : MonoBehaviour
     {
     }
 
-    public void GolemSummon()
-    {
-    }
-
-    public void MagicTrigger()
-    {
-    }
-
     // 角色执行战斗
     public void PreBattle(Character attacker)
     {
-        BattleManager battleManager = gameObject.AddComponent<BattleManager>();
+        var battleManager = gameObject.AddComponent<BattleManager>();
         battleManager.PreBattle(attacker);
     }
 

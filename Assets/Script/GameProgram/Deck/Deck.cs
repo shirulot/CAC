@@ -52,7 +52,7 @@ public class Deck : MonoBehaviour
         {
             var drawTarget = _list[_list.Count - 1];
             hand.CardDraw(drawTarget);
-            ExtraActionProgram.GetInstance().Save(ExtraTag.DrawCard, drawTarget);
+            GetComponent<GameLog>().Save("Card draw", drawTarget);
         }
         else
         {
