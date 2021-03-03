@@ -2,23 +2,16 @@ using UnityEngine;
 
 public class ChargeSingleCannon : Golem
 {
-    
-
     public void Awake()
     {
         CardInfo.Init("9999", "0001", 3, 8);
         Info.Init(GolemType.Charge,hp:20,standardHp:20,soulLink:3);
     }
 
-    public override void Charge(int point, Card attacker)
-    {
-        
-    }
-
     //每次充能完成调用
-    public override void ChargeComplete()
+    public override void ChargeComplete(Card attacker)
     {
-        
+        //TODO 对直线所有敌人造成大额伤害
     }
 
    

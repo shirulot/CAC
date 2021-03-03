@@ -15,6 +15,9 @@ public class GolemInfo
     // 连接数
     public int SoulLink;
 
+    //破坏损失的分数
+    public int Score;
+
     // 类型
     public GolemType Type = GolemType.Link;
 
@@ -24,7 +27,8 @@ public class GolemInfo
         int used = 0,
         int hp = 10,
         int standardHp = 10,
-        int soulLink = 3
+        int soulLink = 3,
+        int score = 0
     )
     {
         this.Count = count;
@@ -32,7 +36,7 @@ public class GolemInfo
         this.Hp = hp;
         this.StandardHp = standardHp;
         this.SoulLink = soulLink;
-
+        this.Score = score;
         return this;
     }
 }

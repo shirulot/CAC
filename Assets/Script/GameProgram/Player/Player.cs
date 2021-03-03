@@ -9,7 +9,7 @@ public class Player : MonoBehaviour
     public Deck Deck;
 
     // 分数 用于最终结算游戏胜败(考虑基本分)
-    public int Score = 100;
+    public int Score = 500;
 
     // 手牌
     public readonly Hand Hand = new Hand();
@@ -22,10 +22,9 @@ public class Player : MonoBehaviour
 
     //当前玩家的行动顺序号
     public int Order;
-    
+
     // 本体
     public Leader ontology;
-
 
     //选择本体
     public void SelectionLeader()
@@ -36,7 +35,7 @@ public class Player : MonoBehaviour
     // type where : Leader
     public void TakePartInGame(Type type)
     {
-         ontology = (Leader) gameObject.AddComponent(type);
+        ontology = (Leader) gameObject.AddComponent(type);
     }
 
     //抽卡
@@ -109,6 +108,12 @@ public class Player : MonoBehaviour
     //TODO
     public Character[] GetCharacters()
     {
-        return new Character[]{};
+        return new Character[] { };
+    }
+
+    //TODO 
+    public void SettlementDamagePoint(Card card, int score)
+    {
+        Score -= score;
     }
 }

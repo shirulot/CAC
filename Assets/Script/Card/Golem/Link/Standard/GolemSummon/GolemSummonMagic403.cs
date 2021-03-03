@@ -6,7 +6,7 @@ using UnityEngine;
 /// 通用系列 基础包 
 /// 9999 0001  
 /// </summary>
-public class ImmobilityGolemSummonMagic : Golem
+public class GolemSummonMagic403 : Golem
 {
     public override string Name() => "静默型土偶召唤术式";
 
@@ -15,7 +15,7 @@ public class ImmobilityGolemSummonMagic : Golem
     private void Awake()
     {
         CardInfo.Init("9999", "0001", 4, 1);
-        Info.Init(GolemType.Link, hp: 15, soulLink: 5);
+        Info.Init(GolemType.Link, hp: 15, soulLink: 5, score: 50);
     }
 
 
@@ -27,11 +27,10 @@ public class ImmobilityGolemSummonMagic : Golem
     //link角色
     class LinkChild : Character
     {
-
         public void Awake()
         {
-            CardInfo.Init("9999", "0001", 0, 1,"03");
-            Info.Init(attack: 5, score: 35);
+            CardInfo.Init("9999", "0001", 0, 1, "03");
+            Info.Init(attack: 4);
         }
 
         public override string Name() => "不动土偶";

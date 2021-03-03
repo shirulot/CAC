@@ -6,7 +6,7 @@ using UnityEngine;
 /// 通用系列 基础包 
 /// 9999 0001  
 /// </summary>
-public class SimpleGolemSummonMagic : Golem
+public class GolemSummonMagic100 : Golem
 {
     public override string Name() => "简易土偶召唤术式";
 
@@ -15,13 +15,13 @@ public class SimpleGolemSummonMagic : Golem
     private void Awake()
     {
         CardInfo.Init("9999", "0001", 1, 1);
-        Info.Init(GolemType.Link, hp: 7, soulLink: 3);
+        Info.Init(GolemType.Link, hp: 7, soulLink: 3,score:15);
     }
 
     public override void EffectLaunch()
     {
         Character = GetComponent<SummonSystem>()
-            .CharacterSummon<SimpleGolemSummonMagic.LinkChild>(ChildUnitPrefab, new Vector3(), this);
+            .CharacterSummon<GolemSummonMagic100.LinkChild>(ChildUnitPrefab, new Vector3(), this);
     }
 
     //link角色
@@ -30,7 +30,7 @@ public class SimpleGolemSummonMagic : Golem
         private void Awake()
         {
             CardInfo.Init("9999", "0001", 0, 1);
-            ((Character) this).Info.Init(attack: 2, score: 15);
+            Info.Init(attack: 1);
         }
 
 

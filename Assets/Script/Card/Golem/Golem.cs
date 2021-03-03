@@ -20,6 +20,10 @@ public enum GolemType
 // 通常因为位置原因 golem的破坏难度比通常角色要高(尤其是link型)  所以golem可以适当的提升破坏score
 public class Golem : Card
 {
+    
+    // 被充能破坏
+    public bool ChargeBreack = false;
+
     // 角色
     public Character Character;
 
@@ -58,7 +62,6 @@ public class Golem : Card
     // link 成功后亮起地板
     protected void ShowLinkAnim()
     {
-        
     }
 
 
@@ -73,34 +76,36 @@ public class Golem : Card
     public void Break()
     {
         //角色破坏 
-        MainProgram.Instance.Break(this);
+        GetComponent<MainProgram>().Break(this);
     }
 
     //充能（受到伤害） 
-    public virtual void Charge(int point, Card attacker)
+    public void Charge(int point, Card attacker)
     {
-        var IsCurrent = GetComponent<PlayerManager>().CardIsCurrentPlayerProperty(attacker);
-        Info.Hp = IsCurrent ? Info.Hp - point : Info.Hp + point;
+        var isCurrent = GetComponent<PlayerManager>().CardIsCurrentPlayerProperty(attacker);
+        Info.Hp = isCurrent ? Info.Hp - point : Info.Hp + point;
         if (Info.Hp <= 0)
         {
             Info.Hp = Info.StandardHp;
-            ChargeComplete();
+            ChargeComplete(attacker);
             Info.Used++;
         }
-
         if (Info.Hp >= Info.StandardHp * 2 || Info.Used >= Info.Count) GolemBreak(attacker);
     }
 
     //单次充能完成发动的能力
-    public virtual void ChargeComplete()
+    public virtual void ChargeComplete(Card breaker)
     {
+        Info.Used++;
+        ChargeBreack = true;
         //破坏时将事件传递给所有单位
         foreach (var t in GetComponents<Card>()) t.OnChargeComplete(this);
+        GolemBreak(breaker);
     }
 
     /// 魔像破坏 
     /// <param name="breaker"> 破坏当前魔像的对象 </param>
-    private void GolemBreak(Card breaker)
+    public void GolemBreak(Card breaker)
     {
         //破坏时将事件传递给所有单位
         foreach (var t in GetComponents<Card>()) t.OnGolemBreak(breaker, this);

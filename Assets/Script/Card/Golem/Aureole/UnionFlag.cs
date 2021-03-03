@@ -16,7 +16,7 @@ public class UnionFlag : Golem
         unitedWeStand.setEnabled(true, GetComponent<PlayerManager>().GetCurrentPlayer());
     }
 
-    public override void ChargeComplete()
+    public override void ChargeComplete(Card attacker)
     {
         unitedWeStand.AureoleLevelChange(1);
     }

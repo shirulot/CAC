@@ -26,7 +26,7 @@ public class MainProgram : MonoBehaviour
     {
         GetComponent<TurnManager>().TurnStart();
     }
-    
+
 
     //抽牌
     public void CardDraw(Player player)
@@ -63,7 +63,7 @@ public class MainProgram : MonoBehaviour
         if (battleManager == null) return;
         battleManager.Battle(target);
     }
-    
+
 
     // 玩家失败退场
     public void Defeated(Player player)
@@ -76,8 +76,20 @@ public class MainProgram : MonoBehaviour
     }
 
 
-    //卡片破坏
+    //TODO 卡片破坏
     public void Break(Card card)
     {
+        var score = 0;
+        switch (card)
+        {
+            case Character c:
+                score = c.Info.Score;
+                break;
+            case Golem g:
+                score = g.Info.Score;
+                break;
+        }
+        GetComponent<PlayerManager>().FindUnitHolder(card).SettlementDamagePoint(card, score);
+        Destroy(card);
     }
 }
