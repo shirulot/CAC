@@ -19,7 +19,7 @@ public class FrightenedMagic : Magic
     }
 
     // 对对象进行携带
-    public override void EffectAction(List<Card> targets)
+    public override void EffectInvoke(List<Card> targets)
     {
         if (targets != null && targets.Count > 0)
         {

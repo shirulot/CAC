@@ -1,8 +1,9 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 //场地
-public class Field :MonoBehaviour
+public class Field : MonoBehaviour
 {
     Dictionary<Player, List<Character>> characterMap = new Dictionary<Player, List<Character>>();
     Dictionary<Player, List<Golem>> golemMap = new Dictionary<Player, List<Golem>>();
@@ -24,5 +25,11 @@ public class Field :MonoBehaviour
         var characters = new List<Character>();
         foreach (var keyValuePair in characterMap) characters.AddRange(keyValuePair.Value);
         return characters;
+    }
+
+    // 获取当前unit所在的位置
+    public int[] FindUnitLocation(Unit unit)
+    {
+        return new[] {0, 1};
     }
 }

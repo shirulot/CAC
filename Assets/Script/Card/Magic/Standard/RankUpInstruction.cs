@@ -22,7 +22,7 @@ public class RankUpInstruction : Magic
     }
 
     //选中后的逻辑
-    public override void EffectAction(List<Card> targets)
+    public override void EffectInvoke(List<Card> targets)
     {
         // var component = target.GetComponent<Card>();
         if (targets != null && targets.Count > 0)

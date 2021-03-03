@@ -38,7 +38,7 @@ public class EffectProcessor
 
     private void InvokeEffect()
     {
-        _chooser.EffectAction(_targets);
+        _chooser.EffectInvoke(_targets);
     }
 
     public bool Cancel(Card card)

@@ -10,7 +10,7 @@ public class InstantCharge : Magic
         CardInfo.Init("9999", "0001", 4, 3);
     }
 
-    public override void EffectAction(List<Card> targets)
+    public override void EffectInvoke(List<Card> targets)
     {
         if (targets.Count > 0 && targets[0] is Golem target && target.Info.Type == GolemType.Charge)
             target.Charge(10, this);

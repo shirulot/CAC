@@ -9,6 +9,7 @@ public class TurnManager : MonoBehaviour
     // 回合开始
     public void TurnStart()
     {
+        foreach (var t in GetComponents<Player>()) t.OnTurnStart();
         foreach (var t in GetComponents<Card>()) t.OnTurnStart();
     }
 

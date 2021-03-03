@@ -10,8 +10,6 @@ public class Character : Card
     //魔术
     public Magic magic;
 
-    List<Effect> effectList;
-
     //单回合攻击力增减等
     protected Dictionary<SingleTurn, int> SingleTurnMemo = new Dictionary<SingleTurn, int>();
 
@@ -19,8 +17,9 @@ public class Character : Card
     public int LastAttackIncrement = 0;
 
     public Player Player;
+
     // public GameObject Obj;
-    private CharacterInfo _info = new CharacterInfo();
+    public readonly CharacterInfo Info = new CharacterInfo();
 
     public virtual void CharacterDeath(Player player)
     {
@@ -28,83 +27,70 @@ public class Character : Card
         EffectAttach();
     }
 
-    public CharacterInfo Info
-    {
-        get { return _info; }
-    }
-
 
     public override void OnCardDraw()
     {
-        ForEachLifecycle(delegate(Unit lifecycle) { lifecycle.OnCardDraw(); });
+        GetComponent<GameBroadcast>().PostLifecycle(magic,delegate(Unit lifecycle) { lifecycle.OnCardDraw(); });
     }
 
     public override void OnAttackMiss()
     {
-        ForEachLifecycle(delegate(Unit lifecycle) { lifecycle.OnAttackMiss(); });
+        GetComponent<GameBroadcast>().PostLifecycle(magic,delegate(Unit lifecycle) { lifecycle.OnAttackMiss(); });
     }
 
     public override void OnAvoidAttack()
     {
-        ForEachLifecycle(delegate(Unit lifecycle) { lifecycle.OnAvoidAttack(); });
+        GetComponent<GameBroadcast>().PostLifecycle(magic,delegate(Unit lifecycle) { lifecycle.OnAvoidAttack(); });
     }
 
     public override void OnTurnStart()
     {
-        ForEachLifecycle(delegate(Unit lifecycle) { lifecycle.OnTurnStart(); });
+        GetComponent<GameBroadcast>().PostLifecycle(magic,delegate(Unit lifecycle) { lifecycle.OnTurnStart(); });
     }
 
     public override void OnAttackStart(Card targetCharacter)
     {
-        ForEachLifecycle(delegate(Unit lifecycle) { lifecycle.OnAttackStart(targetCharacter); });
+        GetComponent<GameBroadcast>().PostLifecycle(magic,delegate(Unit lifecycle) { lifecycle.OnAttackStart(targetCharacter); });
     }
 
     public override void OnBeforeBeingAttacked(Character character)
     {
-        ForEachLifecycle(delegate(Unit lifecycle) { lifecycle.OnBeforeBeingAttacked(character); });
+        GetComponent<GameBroadcast>().PostLifecycle(magic,delegate(Unit lifecycle) { lifecycle.OnBeforeBeingAttacked(character); });
     }
 
     public override void OnAfterBeingAttacked(Character character)
     {
-        ForEachLifecycle(delegate(Unit lifecycle) { lifecycle.OnAfterBeingAttacked(character); });
+        GetComponent<GameBroadcast>().PostLifecycle(magic,delegate(Unit lifecycle) { lifecycle.OnAfterBeingAttacked(character); });
     }
 
     public override void OnBeforeCounterattack(Character counterTarget)
     {
-        ForEachLifecycle(delegate(Unit lifecycle) { lifecycle.OnBeforeCounterattack(counterTarget); });
+        GetComponent<GameBroadcast>().PostLifecycle(magic,delegate(Unit lifecycle) { lifecycle.OnBeforeCounterattack(counterTarget); });
     }
 
     public override void OnAfterCounterattack(Character counterTarget)
     {
-        ForEachLifecycle(delegate(Unit lifecycle) { lifecycle.OnAfterCounterattack(counterTarget); });
+        GetComponent<GameBroadcast>().PostLifecycle(magic,delegate(Unit lifecycle) { lifecycle.OnAfterCounterattack(counterTarget); });
     }
 
     public override void OnAttackEnd(Card targetCharacter)
     {
-        ForEachLifecycle(delegate(Unit lifecycle) { lifecycle.OnAttackEnd(targetCharacter); });
+        GetComponent<GameBroadcast>().PostLifecycle(magic,delegate(Unit lifecycle) { lifecycle.OnAttackEnd(targetCharacter); });
     }
 
     public override void OnTurnEnd()
     {
-        ForEachLifecycle(delegate(Unit lifecycle) { lifecycle.OnTurnEnd(); });
+        GetComponent<GameBroadcast>().PostLifecycle(magic,delegate(Unit lifecycle) { lifecycle.OnTurnEnd(); });
     }
 
     // Hp变动 增加/减少
     public virtual void changeHp(int incremental)
     {
-        _info.Hp += incremental;
+        Info.Hp += incremental;
+        GetComponent<GameBroadcast>().PostLifecycle(magic,delegate(Unit unit) { unit.OnHpChange(incremental, this); });
     }
 
-
-    void ForEachLifecycle(Action<Unit> action)
-    {
-        action.Invoke(magic);
-        var childrenComponents = this.GetComponentsInChildren<Unit>();
-        foreach (var child in childrenComponents) action.Invoke(child);
-        // effectList.ForEach(action.Invoke);
-        // buffList.ForEach(action.Invoke);
-    }
-
+    
     //buff 赋予
     public virtual T BuffAttach<T>(int level = 1) where T : Buff
     {
@@ -125,26 +111,21 @@ public class Character : Card
     }
 
     //buff清除
-    public virtual void BuffDetach(Type type) 
+    public virtual void BuffDetach(Type type)
     {
-            var buff = GetComponentInChildren(type);
-            if (buff == null) return;
-            (buff as Buff)?.OnBuffDetach();
-            Destroy(buff);
+        var buff = GetComponentInChildren(type);
+        if (buff == null) return;
+        (buff as Buff)?.OnBuffDetach();
+        Destroy(buff);
     }
 
     //伤害计算暂不做过于复杂逻辑 
     public void Damage(int damage, bool isPiercing = false)
     {
-        OnBeforeDamage(damage);
         OnDamage(damage, isPiercing);
         OnAfterDamage(damage);
     }
 
-    //计算伤害前 时点 
-    public virtual void OnBeforeDamage(int damage)
-    {
-    }
 
     //伤害计算方法
     public virtual void OnDamage(int damage, bool isPiercing)
@@ -158,15 +139,13 @@ public class Character : Card
         {
             Info.Aegis -= damage;
             // 护盾无法抵消伤害 对溢出伤害进行计算
-            if (Info.Aegis < 0)
-            {
-                changeHp(Info.Aegis);
-                Info.Aegis = 0;
-            }
+            if (Info.Aegis >= 0) return;
+            changeHp(Info.Aegis);
+            Info.Aegis = 0;
         }
     }
 
-    //计算伤害后 时点 确认破坏之前
+    //受到伤害后 时点 确认破坏之前
     public virtual void OnAfterDamage(int damage)
     {
     }

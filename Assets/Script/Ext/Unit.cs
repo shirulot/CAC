@@ -106,31 +106,37 @@ public class Unit : MonoBehaviour
     {
     }
     
-    public virtual void OnHpChange(int incremental)
+    // 单位HP变动时
+    public virtual void OnHpChange(int incremental,Unit unit)
     {
     }
-    
+
+    //其他单位发动效果时
+    public virtual void OnEffectLaunch(Unit unit)
+    {
+        
+    }
 
     public bool CheckTimePoint(String timePoint) => _timePointList.Contains(timePoint);
 }
 
-public class TimePoint
-{
-    public static String OnCardDraw = "OnCardDraw";
-    public static String OnAttackMiss = "OnAttackMiss";
-    public static String OnTurnStart = "OnTurnStart";
-    public static String OnAttackStart = "OnAttackStart";
-    public static String OnBeforeBeingAttacked = "OnBeforeBeingAttacked";
-    public static String OnAfterBeingAttacked = "OnAfterBeingAttacked";
-    public static String OnBeforeCounterattack = "OnBeforeCounterattack";
-    public static String OnAfterCounterattack = "OnAfterCounterattack";
-    public static String OnAttackEnd = "OnAttackEnd";
-    public static String OnTurnEnd = "OnTurnEnd";
-    public static String OnCardAction = "OnCardAction";
-    public static String OnCharacterDeath = "OnCharacterDeath";
-    public static String OnCharacterDisappear = "OnCharacterDisappear";
-    public static String OnGolemSummon = "OnGolemSummon";
-    public static String OnGolemBreak = "OnGolemBreak";
-    public static String OnMagicTrigger = "OnMagicTrigger";
-    public static String OnAttackChange = "OnAttackChange";
-}
+// public class TimePoint
+// {
+//     public static String OnCardDraw = "OnCardDraw";
+//     public static String OnAttackMiss = "OnAttackMiss";
+//     public static String OnTurnStart = "OnTurnStart";
+//     public static String OnAttackStart = "OnAttackStart";
+//     public static String OnBeforeBeingAttacked = "OnBeforeBeingAttacked";
+//     public static String OnAfterBeingAttacked = "OnAfterBeingAttacked";
+//     public static String OnBeforeCounterattack = "OnBeforeCounterattack";
+//     public static String OnAfterCounterattack = "OnAfterCounterattack";
+//     public static String OnAttackEnd = "OnAttackEnd";
+//     public static String OnTurnEnd = "OnTurnEnd";
+//     public static String OnCardAction = "OnCardAction";
+//     public static String OnCharacterDeath = "OnCharacterDeath";
+//     public static String OnCharacterDisappear = "OnCharacterDisappear";
+//     public static String OnGolemSummon = "OnGolemSummon";
+//     public static String OnGolemBreak = "OnGolemBreak";
+//     public static String OnMagicTrigger = "OnMagicTrigger";
+//     public static String OnAttackChange = "OnAttackChange";
+// }

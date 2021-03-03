@@ -42,8 +42,6 @@ public class Card : Unit, IComparable
             GetComponent<EventHandle>().Cancel();
             OnCancel();
         }
-       
-        
     }
 
     private void OnCancel()

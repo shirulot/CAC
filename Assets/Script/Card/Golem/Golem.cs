@@ -13,8 +13,8 @@ public enum GolemType
 
     // 充能型:初始存在较高HP 只接受自己角色的攻击,HP为0时破坏 破坏时发动强力效果
     Charge,
-    //TODO 载具型: 存在普通HP 拥有较远的攻击范围 需要驾驶员 在有驾驶员时不会受到攻击
-    //TODO 攻击型: 存在较低HP 拥有较远的攻击范围 强攻击
+    //TODO 待决策 载具型: 存在普通HP 拥有较远的攻击范围 需要驾驶员 在有驾驶员时不会受到攻击
+    //TODO 待决策 攻击型: 存在较低HP 拥有较远的攻击范围 强攻击
 }
 
 // 通常因为位置原因 golem的破坏难度比通常角色要高(尤其是link型)  所以golem可以适当的提升破坏score
@@ -23,9 +23,8 @@ public class Golem : Card
     // 角色
     public Character Character;
 
-    //Character 预制体
+    //Character 预制体 SoulLink对象需要使用
     [SerializeField] public GameObject ChildUnitPrefab;
-    
 
     public GolemInfo Info = new GolemInfo();
 
@@ -42,9 +41,11 @@ public class Golem : Card
         if (Info.Type == GolemType.Link)
         {
             //回合开始时检查
+            //TODO mock 
             bool isLink = Random.Range(0, 1) != 1;
             if (isLink)
             {
+                ShowLinkAnim();
             }
             else
             {
@@ -52,6 +53,12 @@ public class Golem : Card
                 Info.SoulLink--;
             }
         }
+    }
+
+    // link 成功后亮起地板
+    protected void ShowLinkAnim()
+    {
+        
     }
 
 
@@ -96,6 +103,6 @@ public class Golem : Card
     private void GolemBreak(Card breaker)
     {
         //破坏时将事件传递给所有单位
-        foreach (var t in GetComponents<Card>()) t.OnGolemBreak(breaker,this);
+        foreach (var t in GetComponents<Card>()) t.OnGolemBreak(breaker, this);
     }
 }

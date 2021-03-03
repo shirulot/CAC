@@ -30,7 +30,7 @@ public class SimpleGolemSummonMagic : Golem
         private void Awake()
         {
             CardInfo.Init("9999", "0001", 0, 1);
-            Info.Init(attack: 2, score: 15);
+            ((Character) this).Info.Init(attack: 2, score: 15);
         }
 
 
