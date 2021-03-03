@@ -13,10 +13,10 @@ public class StrikerEffect : Effect
 
     public override void OnAttach()
     {
-        if (attachTarget.Info.EffectEnable)
+        if (AttachTarget.Info.EffectEnable)
         {
-            attachTarget.ChangeAttack(1);
-            attachTarget.changeHp(2);
+            AttachTarget.ChangeAttack(1);
+            AttachTarget.changeHp(2);
         }
     }
 }

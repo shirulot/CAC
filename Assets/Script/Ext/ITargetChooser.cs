@@ -4,5 +4,5 @@ public interface ITargetChooser
 {
      void EffectPreAction();
 
-     void EffectInvoke(List<Card> targets);
+     void TargetsSelection(List<Card> targets);
 }

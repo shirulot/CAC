@@ -5,9 +5,16 @@ using System.Collections.Generic;
 
 public enum BuffType
 {
+    //减益效果
     DeBuff,
+
+    //增益效果
     Gain,
+
+    //光环效果
     Aureole,
+
+    //说明性 规则buff
     Rules
 }
 
@@ -19,20 +26,16 @@ public class Buff : Unit
     //当前buff是否可用
     public bool enable = true;
 
-    // buff剩余回合数
-    int turn;
+    // buff经过回合数
+    public int PassedTurns = 0;
 
-    //常驻攻击力增幅 攻击前计算
-    int attackPermanentAbility;
-
+    // 持续性buff 总回合数
+    public int TotalTurns = 99;
 
     // 角色
     public Character attachTarget;
 
-    public virtual void Attach(Character attachTarget)
-    {
-        this.attachTarget = attachTarget;
-    }
+    
 
     //buff类型
     public virtual BuffType buffType()
@@ -84,15 +87,10 @@ public class Buff : Unit
     {
     }
 
-
-    public virtual String Description()
+    public override void OnTurnEnd()
     {
-        return "";
-    }
-
-    public virtual String Name()
-    {
-        return "";
+        PassedTurns++;
+        base.OnTurnEnd();
     }
 
 
@@ -100,9 +98,6 @@ public class Buff : Unit
     public virtual void BuffDown(int downLevel = 1)
     {
         buffLevel -= downLevel;
-        if (buffLevel <= 0)
-        {
-            attachTarget.BuffDetach(GetType());
-        }
+        if (buffLevel <= 0) attachTarget.BuffDetach(GetType());
     }
 }

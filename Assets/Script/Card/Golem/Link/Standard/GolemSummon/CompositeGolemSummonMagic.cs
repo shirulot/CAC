@@ -15,7 +15,7 @@ public class CompositeGolemSummonMagic : Golem
     private void Awake()
     {
         CardInfo.Init("9999", "0001", 3, 1);
-        Info.Init(GolemType.Link, HP: 12, soulLink: 4);
+        Info.Init(GolemType.Link, hp: 12, soulLink: 4);
     }
 
 

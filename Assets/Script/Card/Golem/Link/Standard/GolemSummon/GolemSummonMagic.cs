@@ -15,7 +15,7 @@ public class GolemSummonMagic : Golem
     private void Awake()
     {
         CardInfo.Init("9999", "0001", 2, 1);
-        Info.Init(GolemType.Link, HP: 10, soulLink: 4);
+        Info.Init(GolemType.Link, hp: 10, soulLink: 4);
     }
 
 

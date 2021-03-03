@@ -21,12 +21,12 @@ public class Magic : Card,ITargetChooser
     // 能力预发动 通常是用于选中对象等
     public virtual void EffectPreAction()
     {
-        EffectInvoke(null);
+        TargetsSelection(null);
     }
     
     
     // 能力发动
-    public virtual void EffectInvoke(List<Card> targets)
+    public virtual void TargetsSelection(List<Card> targets)
     {
     }
 

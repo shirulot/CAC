@@ -2,34 +2,28 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-//场地
+//场地 用于计算角色行动等
 public class Field : MonoBehaviour
 {
-    Dictionary<Player, List<Character>> characterMap = new Dictionary<Player, List<Character>>();
-    Dictionary<Player, List<Golem>> golemMap = new Dictionary<Player, List<Golem>>();
-    Dictionary<Player, List<Magic>> magicMap = new Dictionary<Player, List<Magic>>();
-
-    private static Field _instance;
-
-    private Field()
-    {
-    }
-
-    public static Field GetInstance() => _instance ?? (_instance = new Field());
-
-    // 获取场地中指定玩家的所有角色卡
-    public List<Character> GetCharacters(Player player = null)
-    {
-        if (player != null) return characterMap[player];
-
-        var characters = new List<Character>();
-        foreach (var keyValuePair in characterMap) characters.AddRange(keyValuePair.Value);
-        return characters;
-    }
-
-    // 获取当前unit所在的位置
+    [SerializeField]
+    public Tile[][] tiles ;
+    
+    //TODO 获取当前unit所在的位置
     public int[] FindUnitLocation(Unit unit)
     {
+        // foreach (var tile in tiles)
+        // {
+        //     
+        // }
+
         return new[] {0, 1};
+    }
+
+    // 获取某个单位所属者(玩家)下的所有角色
+    public Character[] GetCharacters(Unit unit)
+    {
+        var playerManager = GetComponent<PlayerManager>();
+        Player holder = playerManager.FindUnitHolder(unit);
+        return playerManager.GetPlayerHolderCharacters(holder.Order);
     }
 }

@@ -8,7 +8,7 @@ public class FrightenedMagic : Magic
 
     public FrightenedMagic()
     {
-        CardInfo.Init(seriesId: "9999", groupId: "0001", rank: 3, no: 3);
+        CardInfo.Init("9999", "0001", 3, 3);
     }
 
 
@@ -19,14 +19,11 @@ public class FrightenedMagic : Magic
     }
 
     // 对对象进行携带
-    public override void EffectInvoke(List<Card> targets)
+    public override void TargetsSelection(List<Card> targets)
     {
-        if (targets != null && targets.Count > 0)
-        {
-            (targets[0] as Character)?.MagicAttach(this);
-        }
+        if (targets != null && targets.Count > 0) (targets[0] as Character)?.MagicAttach(this);
     }
-    
+
     public override void OnBeforeBeingAttacked(Character character)
     {
         character.Damage(3);

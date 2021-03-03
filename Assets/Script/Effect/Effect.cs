@@ -8,17 +8,19 @@ public class Effect : Unit
     public virtual String Name() => "";
     public virtual String Description() => "";
 
-    protected Character attachTarget;
-
-    // private List<String> abilityTag = new List<String> {BaseTag.Ability, BaseTag.Ability};
-
-    public void AttachCharacter(Character attachTarget)
+    public Character AttachTarget;
+    
+    
+    
+    private void Awake()
     {
-        this.attachTarget = attachTarget;
         OnAttach();
     }
-
+    
+    
     public virtual void OnAttach()
     {
+        AttachTarget = gameObject.GetComponentInChildren<Character>();
+
     }
 }

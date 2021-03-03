@@ -27,8 +27,8 @@ public class UnitedWeStandChildBuff : AureoleBuff<UnitedWeStandChildBuff>
         //高于2级时倍率切换为1 否则为0.5倍
         float ratio = aureoleLevel <= 2 ? 0.5f : 1;
 
-        var characters = Field.GetInstance().GetCharacters(attachTarget.Player);
-        var newIncremental = Mathf.CeilToInt(characters.Count * ratio);
+        Character[] characters = GetComponent<Field>().GetCharacters(this);
+        var newIncremental = Mathf.CeilToInt(characters.Length * ratio);
         var changeAttackIncremental = newIncremental - _attackIncremental;
         var changeAegisIncremental = newIncremental - _aegisIncremental;
 

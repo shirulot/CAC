@@ -15,7 +15,7 @@ public class ImmobilityGolemSummonMagic : Golem
     private void Awake()
     {
         CardInfo.Init("9999", "0001", 4, 1);
-        Info.Init(GolemType.Link, HP: 15, soulLink: 5);
+        Info.Init(GolemType.Link, hp: 15, soulLink: 5);
     }
 
 

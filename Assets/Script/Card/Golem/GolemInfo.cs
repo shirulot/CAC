@@ -7,30 +7,30 @@ public class GolemInfo
     public int Used = 0;
 
     // golem存在hp  
-    public int HP;
+    public int Hp;
 
     // 基础HP
-    public int StandradHP;
+    public int StandardHp;
 
     // 连接数
     public int SoulLink;
 
     // 类型
-    public GolemType Type;
+    public GolemType Type = GolemType.Link;
 
     public GolemInfo Init(
         GolemType type = GolemType.Link,
         int count = 1,
         int used = 0,
-        int HP = 10,
-        int standradHP = 10,
+        int hp = 10,
+        int standardHp = 10,
         int soulLink = 3
     )
     {
         this.Count = count;
         this.Used = used;
-        this.HP = HP;
-        this.StandradHP = standradHP;
+        this.Hp = hp;
+        this.StandardHp = standardHp;
         this.SoulLink = soulLink;
 
         return this;

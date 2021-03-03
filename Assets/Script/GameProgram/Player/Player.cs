@@ -105,4 +105,10 @@ public class Player : MonoBehaviour
         var pm = GetComponent<PlayerManager>();
         return pm.ActiveIndex == pm.CurrentIndex;
     }
+
+    //TODO
+    public Character[] GetCharacters()
+    {
+        return new Character[]{};
+    }
 }

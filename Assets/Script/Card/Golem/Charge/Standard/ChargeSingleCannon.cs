@@ -7,7 +7,7 @@ public class ChargeSingleCannon : Golem
     public void Awake()
     {
         CardInfo.Init("9999", "0001", 3, 8);
-        Info.Init(GolemType.Charge,HP:20,standradHP:20,soulLink:3);
+        Info.Init(GolemType.Charge,hp:20,standardHp:20,soulLink:3);
     }
 
     public override void Charge(int point, Card attacker)

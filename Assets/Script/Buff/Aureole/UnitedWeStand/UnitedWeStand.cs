@@ -32,23 +32,18 @@ public class UnitedWeStand : Aureole
     // 光环效果可用 如果中途失效过 会重复赋予
     public override void OnEnable()
     {
-        Field.GetInstance().GetCharacters().ForEach(delegate(Character child)
+        foreach (var child in GetComponents<Character>())
         {
             var buff = child.BuffAttach<UnitedWeStandChildBuff>();
-            // var buff =  child.Obj.AddComponent<UnitedWeStandChildBuff>();
             buff.Attach(child, aureoleLevel);
-            // AureoleMap[child] = buff;
-        });
+        }
     }
 
     public void AureoleLevelChange(int level)
     {
         this.aureoleLevel += level;
-        GetComponent<Field>().GetCharacters().ForEach(delegate(Character child)
-            {
-                child.GetComponent<UnitedWeStandChildBuff>().BuffLevelChange(level);
-            }
-        );
+        foreach (var child in GetComponents<Character>())
+            child.GetComponent<UnitedWeStandChildBuff>().BuffLevelChange(level);
     }
 
     //名称后缀的 (大、中、小)

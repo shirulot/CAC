@@ -55,4 +55,15 @@ public class PlayerManager : MonoBehaviour
     {
         return false;
     }
+
+    //TODO 未实现
+    public Player FindUnitHolder(Unit unit)
+    {
+        return GetCurrentPlayer();
+    }
+
+    public Character[] GetPlayerHolderCharacters(int order)
+    {
+        return PlayerList[order].GetCharacters();
+    }
 }

@@ -53,6 +53,9 @@ public class CharacterInfo
 
     //已反击次数
     public int CountedCount = 0;
+    
+    // 已移动的次数
+    public int Moved = 0;
 
     //回避率
     public int Avoid = 5;
@@ -67,6 +70,7 @@ public class CharacterInfo
         bool isBreak = false,
         bool canCounter = true,
         int mobility = 0,
+        int moved = 1,
         int aegis = 0,
         int attack = 0,
         int maxHp = 0,
@@ -92,6 +96,7 @@ public class CharacterInfo
         this.MaxHp = maxHp;
         this.Hp = hp;
         this.Cost = cost;
+        this.Moved = moved;
         return this;
     }
 }

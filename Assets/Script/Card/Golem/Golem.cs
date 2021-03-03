@@ -80,15 +80,15 @@ public class Golem : Card
     public virtual void Charge(int point, Card attacker)
     {
         var IsCurrent = GetComponent<PlayerManager>().CardIsCurrentPlayerProperty(attacker);
-        Info.HP = IsCurrent ? Info.HP - point : Info.HP + point;
-        if (Info.HP <= 0)
+        Info.Hp = IsCurrent ? Info.Hp - point : Info.Hp + point;
+        if (Info.Hp <= 0)
         {
-            Info.HP = Info.StandradHP;
+            Info.Hp = Info.StandardHp;
             ChargeComplete();
             Info.Used++;
         }
 
-        if (Info.HP >= Info.StandradHP * 2 || Info.Used >= Info.Count) GolemBreak(attacker);
+        if (Info.Hp >= Info.StandardHp * 2 || Info.Used >= Info.Count) GolemBreak(attacker);
     }
 
     //单次充能完成发动的能力

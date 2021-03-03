@@ -9,10 +9,6 @@ public class Character : Card
 {
     //魔术
     public Magic magic;
-
-    //单回合攻击力增减等
-    protected Dictionary<SingleTurn, int> SingleTurnMemo = new Dictionary<SingleTurn, int>();
-
     // 攻击力最近一次的增量
     public int LastAttackIncrement = 0;
 
@@ -21,9 +17,8 @@ public class Character : Card
     // public GameObject Obj;
     public readonly CharacterInfo Info = new CharacterInfo();
 
-    public virtual void CharacterDeath(Player player)
+    public virtual void CharacterDeath()
     {
-        this.Player = player;
         EffectAttach();
     }
 
@@ -179,7 +174,6 @@ public class Character : Card
             var decrement = Mathf.FloorToInt(Info.Attack / 2f);
 
             LastAttackIncrement = lastAttack - Info.Attack;
-            SingleTurnMemo[SingleTurn.Attack] += LastAttackIncrement;
             //TODO 攻击力变动事件广播 
         }
     }
