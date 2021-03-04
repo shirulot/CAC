@@ -73,12 +73,6 @@ public class Golem : Card
     {
     }
 
-    public void Break()
-    {
-        //角色破坏 
-        GetComponent<MainProgram>().Break(this);
-    }
-
     //充能（受到伤害） 
     public void Charge(int point, Card attacker)
     {

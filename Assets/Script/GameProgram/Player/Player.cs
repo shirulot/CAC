@@ -116,4 +116,11 @@ public class Player : MonoBehaviour
     {
         Score -= score;
     }
+
+    // 查询朝向
+    public Vector2 FindOrientation()
+    {
+        // (0,1),(0,-1),(1,0),(-1,0) 四个方向中的一个
+        return new Vector2(0,1);
+    }
 }
