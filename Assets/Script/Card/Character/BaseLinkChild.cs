@@ -11,6 +11,5 @@ public class BaseLinkChild : Character
     public override void CharacterDeath()
     {
         var golemPhantom = gameObject.AddComponent<GolemPhantom>();
-        BuffAttach<GolemPhantom>();
     }
 }
