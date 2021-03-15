@@ -18,7 +18,7 @@ public class Poison : Debuff, IPoison
     // 伤害幅度为 1 1 2 2 3 3 ...
     public override void OnTurnStart()
     {
-        if (enable) attachTarget.Damage(Mathf.CeilToInt(_baseDamage + _growthDamage * buffLevel));
+        if (enable) attachTarget.Damage(Mathf.CeilToInt(_baseDamage + _growthDamage * buffLevel),this);
         BuffDown();
     }
 }

@@ -5,10 +5,10 @@ using Object = UnityEngine.Object;
 
 public class GameLog :MonoBehaviour
 {
-    private Dictionary<String, LogEvent> dictionary = new Dictionary<String, LogEvent>();
+    private readonly Dictionary<string, LogEvent> _dictionary = new Dictionary<string, LogEvent>();
     
     //TODO 获取玩家待实现 
-    public void Save(string eventName, Object obj) => dictionary.Add(eventName, new LogEvent(1,GetComponent<PlayerManager>().GetCurrentPlayer(),obj));
+    public void Save(string eventName, Object obj) => _dictionary.Add(eventName, new LogEvent(1,GetComponent<PlayerManager>().GetCurrentPlayer(),obj));
     
 }
 

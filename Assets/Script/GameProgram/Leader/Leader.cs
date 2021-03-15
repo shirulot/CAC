@@ -87,7 +87,7 @@ public class Leader : Character
     }
 
     //本体伤害分数进行联动
-    public override void changeHp(int incremental)
+    public override void ChangeHp(int incremental, bool breakIsLock)
     {
         // base.changeHp(incremental);
         Info.Hp += incremental;

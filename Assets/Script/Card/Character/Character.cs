@@ -79,9 +79,12 @@ public class Character : Card
     }
 
     // Hp变动 增加/减少
-    public virtual void changeHp(int incremental)
+    public virtual void ChangeHp(int incremental, bool breakIsLock = false)
     {
+        var beforeHp = Info.Hp;
         Info.Hp += incremental;
+        if (breakIsLock && Info.Hp < 1) Info.Hp = 1;
+        incremental = Info.Hp - beforeHp;
         GetComponent<GameBroadcast>().PostLifecycle(magic,delegate(Unit unit) { unit.OnHpChange(incremental, this); });
     }
 
@@ -115,33 +118,45 @@ public class Character : Card
     }
 
     //伤害计算暂不做过于复杂逻辑 
-    public void Damage(int damage, bool isPiercing = false)
+    public void Damage(int damage,Unit injurer , bool isPiercing = false)
     {
-        OnDamage(damage, isPiercing);
-        OnAfterDamage(damage);
+        var breakIsLock = false;
+        if (injurer != null)
+        {
+            foreach (var lockType in Info.BreakLockTypes)
+            {
+                if (breakIsLock.GetType() == lockType)
+                {
+                    breakIsLock = true;
+                }
+            }
+        }
+        
+        OnDamage(damage,injurer, isPiercing,breakIsLock);
+        OnAfterDamage(damage,injurer);
     }
 
 
     //伤害计算方法
-    public virtual void OnDamage(int damage, bool isPiercing)
+    public virtual void OnDamage(int damage, Unit injurer, bool isPiercing, bool breakIsLock)
     {
         // 是否为穿刺伤害 
         if (isPiercing)
         {
-            changeHp(-damage);
+            ChangeHp(-damage,breakIsLock);
         }
         else
         {
             Info.Aegis -= damage;
             // 护盾无法抵消伤害 对溢出伤害进行计算
             if (Info.Aegis >= 0) return;
-            changeHp(Info.Aegis);
+            ChangeHp(Info.Aegis,breakIsLock);
             Info.Aegis = 0;
         }
     }
 
     //受到伤害后 时点 确认破坏之前
-    public virtual void OnAfterDamage(int damage)
+    public virtual void OnAfterDamage(int damage, Unit injurer)
     {
     }
 
@@ -195,7 +210,7 @@ public class Character : Card
         if (target is Character targetCharacter)
         {
             // 伤害结算
-            targetCharacter.Damage(Info.Attack, IsPiercing());
+            targetCharacter.Damage(Info.Attack,this, IsPiercing());
         }
         else if (target is Golem targetGolem)
         {

@@ -17,7 +17,7 @@ public class FiercePoison : Buff, IPoison
     //伤害幅度为 2 3 4 5 6 ...
     public override void OnTurnStart()
     {
-        if (enable) attachTarget.Damage(_baseDamage + _growthDamage * buffLevel);
+        if (enable) attachTarget.Damage(_baseDamage + _growthDamage * buffLevel,this);
         BuffDown();
         GetComponent(typeof(FiercePoison));
 

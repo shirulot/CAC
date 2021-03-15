@@ -26,7 +26,7 @@ public class FrightenedMagic : Magic
 
     public override void OnBeforeBeingAttacked(Character character)
     {
-        character.Damage(3);
+        character.Damage(3,this);
     }
 
     public override string Name() => "惊吓魔术";

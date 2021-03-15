@@ -1,6 +1,9 @@
 // 10
 // 3/8作为基础模板 
 
+using System;
+using System.Collections.Generic;
+
 public class CharacterInfo
 {
     //角色被破坏获得的分数
@@ -59,6 +62,8 @@ public class CharacterInfo
 
     //回避率
     public int Avoid = 5;
+    
+    public List<Type> BreakLockTypes = new List<Type>();  
 
     public CharacterInfo Init(
         int hitRate = 100,

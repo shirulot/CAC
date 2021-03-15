@@ -16,7 +16,7 @@ public class StrikerEffect : Effect
         if (AttachTarget.Info.EffectEnable)
         {
             AttachTarget.ChangeAttack(1);
-            AttachTarget.changeHp(2);
+            AttachTarget.ChangeHp(2);
         }
     }
 }

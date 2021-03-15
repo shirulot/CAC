@@ -13,7 +13,7 @@ public class ChargeSingleCannon : Golem
     {
         //对直线所有敌人造成15伤害
         var list = GetComponent<Field>().FindLineUnit(this);
-        list.ForEach(delegate(Character character) { character.Damage(15); });
+        list.ForEach(delegate(Character character) { character.Damage(15,this); });
     }
 
     public override string Name() => "单发式充能集数炮";

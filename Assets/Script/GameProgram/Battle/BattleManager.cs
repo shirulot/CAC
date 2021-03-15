@@ -69,7 +69,7 @@ public class BattleManager : MonoBehaviour
                         targetCharacter.OnBeforeCounterattack(_attacker);
                         CombatSettlement(targetCharacter, _attacker);
                         //超反击
-                        _attacker.Damage(targetCharacter.Info.Attack, targetCharacter.IsPiercing());
+                        _attacker.Damage(targetCharacter.Info.Attack, targetCharacter,targetCharacter.IsPiercing());
                         targetCharacter.OnBeforeCounterattack(_attacker);
                     }
                 }
