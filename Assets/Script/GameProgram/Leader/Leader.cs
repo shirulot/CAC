@@ -28,6 +28,9 @@ public class Leader : Character
     // 领队能力是否可用
     public bool LeaderEffectIsBlock = false;
 
+    // 特殊指示物
+    public float SPToken = 0;
+
     public bool IsLeader = true;
 
     public override void OnTurnStart()
@@ -46,7 +49,9 @@ public class Leader : Character
     {
         if (_depositCountDown >= 0) return;
         GetComponent<PlayerManager>().GetCurrentPlayer().Deck.DepositRecycle(_depositList);
+        OnCardRecycle(_depositList);
     }
+
 
     //卡片寄存
     public void CardDeposit(Card card)
@@ -123,5 +128,15 @@ public class Leader : Character
         else AttachUnitEffect();
         if (IsLeader) DetachUnitEffect();
         else DetachLeaderEffect();
+    }
+
+    public void ChangePoint(int increment)
+    {
+        Info.Hp += increment;
+    }
+
+    public void ChangeSPToken(float increment)
+    {
+        SPToken += increment;
     }
 }

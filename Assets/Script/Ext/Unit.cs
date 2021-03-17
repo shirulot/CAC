@@ -82,7 +82,7 @@ public class Unit : MonoBehaviour
     }
 
     // 当前卡片破坏
-    public virtual void OnBreak()
+    public virtual void OnBreak(Unit unit)
     {
         
     }
@@ -116,7 +116,13 @@ public class Unit : MonoBehaviour
     {
         
     }
-
+    
+    //当卡片被回收时
+    public virtual void OnCardRecycle(List<Card> depositList)
+    {
+        
+    }
+    
     public bool CheckTimePoint(String timePoint) => _timePointList.Contains(timePoint);
 }
 

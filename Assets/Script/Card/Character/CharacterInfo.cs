@@ -82,7 +82,7 @@ public class CharacterInfo
         int hp = 0,
         int countedCount = 0,
         int score = 0,
-        int cost = 20
+        int cost = 0
     )
     {
         this.Score = score;

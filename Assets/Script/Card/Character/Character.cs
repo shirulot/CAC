@@ -77,6 +77,11 @@ public class Character : Card
     {
         GetComponent<GameBroadcast>().PostLifecycle(magic,delegate(Unit lifecycle) { lifecycle.OnTurnEnd(); });
     }
+    
+    public override void OnCardRecycle(List<Card> depositList)
+    {
+        GetComponent<GameBroadcast>().PostLifecycle(magic,delegate(Unit lifecycle) { lifecycle.OnTurnEnd(); });
+    }
 
     // Hp变动 增加/减少
     public virtual void ChangeHp(int incremental, bool breakIsLock = false)

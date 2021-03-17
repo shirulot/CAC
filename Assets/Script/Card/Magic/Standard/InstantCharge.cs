@@ -1,6 +1,5 @@
 //高速充能
 
-using System;
 using System.Collections.Generic;
 
 public class InstantCharge : Magic
