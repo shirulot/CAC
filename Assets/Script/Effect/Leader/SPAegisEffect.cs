@@ -1,4 +1,4 @@
-public class SPAegis : Effect
+public class SPAegisEffect : Effect
 {
     private int _base = 0;
     private int _increment = 1;
