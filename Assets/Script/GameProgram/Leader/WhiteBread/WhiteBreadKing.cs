@@ -10,7 +10,7 @@ public class WhiteBreadKing : Leader
     private void Start()
     {
         var currentPlayer = GetComponent<PlayerManager>().GetCurrentPlayer();
-        //Leader阶级统一为00
+        //Leader阶级统一为00 
         CardInfo.Init("0001", "0001");
         Info.Init(avoid: 5, hitRate: 95, mobility: 3, attack: 70, hp: currentPlayer.Score);
     }
