@@ -1,7 +1,7 @@
 public class LosterEffect : Effect
 {
     private string _field = "";
-    private float _increment = 0;
+    private int _increment = 0;
     private string _seriesId = "";
 
     public override string Name() => $"遗失者「{_field}」";

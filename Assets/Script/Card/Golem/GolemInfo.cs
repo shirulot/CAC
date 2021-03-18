@@ -10,7 +10,7 @@ public class GolemInfo
     public int Hp;
 
     // 基础HP
-    public int StandardHp;
+    public int ChargeBase;
 
     // 连接数
     public int SoulLink;
@@ -25,8 +25,8 @@ public class GolemInfo
         GolemType type = GolemType.Link,
         int count = 1,
         int used = 0,
-        int hp = 10,
-        int standardHp = 10,
+        int hp = 100,
+        int chargeBase = 100,
         int soulLink = 3,
         int score = 0
     )
@@ -34,7 +34,7 @@ public class GolemInfo
         this.Count = count;
         this.Used = used;
         this.Hp = hp;
-        this.StandardHp = standardHp;
+        this.ChargeBase = chargeBase;
         this.SoulLink = soulLink;
         this.Score = score;
         return this;

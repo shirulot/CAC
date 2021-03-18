@@ -1,6 +1,7 @@
 using UnityEngine;
 
-public class WhiteBreadPathogen : Character
+//
+public class WhiteBreadPathogen1200 : Character
 {
     public override string Name() => "白团子带菌者";
     
@@ -9,7 +10,7 @@ public class WhiteBreadPathogen : Character
     private void Awake()
     {
         CardInfo.Init("0001", "0001", 1, 2);
-        Info.Init(avoid: 5, hitRate: 95, mobility: 3, attack: 1, maxHp: 5, hp: 5, score: 10);
+        Info.Init(avoid: 5, hitRate: 95, mobility: 3, attack: 30, hp: 50, score: 10);
     }
     
     

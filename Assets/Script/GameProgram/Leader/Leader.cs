@@ -23,13 +23,13 @@ public class Leader : Character
     public bool DepositIsBlock = false;
 
     // 单位能力是否可用
-    public bool UnitEffectIsBlock = false;
+    public bool UnitEffectIsBlock = true;
 
     // 领队能力是否可用
-    public bool LeaderEffectIsBlock = false;
+    public bool LeaderEffectIsBlock = true;
 
     // 特殊指示物
-    public float SPToken = 0;
+    public int SPToken = 0;
 
     public bool IsLeader = true;
 
@@ -135,7 +135,7 @@ public class Leader : Character
         Info.Hp += increment;
     }
 
-    public void ChangeSPToken(float increment)
+    public void ChangeSPToken(int increment)
     {
         SPToken += increment;
     }

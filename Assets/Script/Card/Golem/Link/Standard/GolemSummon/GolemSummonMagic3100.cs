@@ -4,9 +4,9 @@ using UnityEngine;
 
 /// <summary>
 /// 通用系列 基础包 
-/// 9999 0001  
+/// 999900013100  
 /// </summary>
-public class GolemSummonMagic302 : Golem
+public class GolemSummonMagic3100 : Golem
 {
     public override string Name() => "复合型土偶召唤术式";
 
@@ -15,7 +15,7 @@ public class GolemSummonMagic302 : Golem
     private void Awake()
     {
         CardInfo.Init("9999", "0001", 3, 1);
-        Info.Init(GolemType.Link, hp: 12, soulLink: 4,score:30);
+        Info.Init(GolemType.Link, hp: 120, soulLink: 4,score:300);
     }
 
 
@@ -24,13 +24,13 @@ public class GolemSummonMagic302 : Golem
         Character = GetComponent<SummonSystem>().CharacterSummon<LinkChild>(ChildUnitPrefab, new Vector3(), this);
     }
 
-    //link角色
+    //link角色  999900010102
     class LinkChild : Character
     {
         public void Awake()
         {
             CardInfo.Init("9999", "0001", 0, 1, "02");
-            Info.Init(attack: 3);
+            Info.Init(attack: 30,score:30);
         }
 
         public override string Name() => "复合型魔术土偶";

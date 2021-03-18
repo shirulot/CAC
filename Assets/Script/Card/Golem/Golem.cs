@@ -80,11 +80,11 @@ public class Golem : Card
         Info.Hp = isCurrent ? Info.Hp - point : Info.Hp + point;
         if (Info.Hp <= 0)
         {
-            Info.Hp = Info.StandardHp;
+            Info.Hp = Info.ChargeBase;
             ChargeComplete(attacker);
             Info.Used++;
         }
-        if (Info.Hp >= Info.StandardHp * 2 || Info.Used >= Info.Count) GolemBreak(attacker);
+        if (Info.Hp >= Info.ChargeBase * 2 || Info.Used >= Info.Count) GolemBreak(attacker);
     }
 
     //单次充能完成发动的能力

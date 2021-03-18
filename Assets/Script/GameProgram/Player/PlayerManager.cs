@@ -20,7 +20,7 @@ public class PlayerManager : MonoBehaviour
     {
         foreach (var t in PlayerList) t.InitDeck();
     }
-    
+
     //切洗玩家顺序
     private void _playerListInit()
     {
@@ -61,9 +61,9 @@ public class PlayerManager : MonoBehaviour
     {
         return GetCurrentPlayer();
     }
-
-    public Character[] GetPlayerHolderCharacters(int order)
-    {
-        return PlayerList[order].GetCharacters();
-    }
+    //获取特定玩家的所有卡牌单元
+    public Character[] GetPlayerHolderCharacters(int order)=> PlayerList[order].GetCharacters();
+    
+    //当前活动的玩家是否为我方
+    public bool ActivePlayerIsCurrent() => ActiveIndex == CurrentIndex;
 }

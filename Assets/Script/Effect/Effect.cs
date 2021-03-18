@@ -1,12 +1,14 @@
 using System;
 using System.Collections.Generic;
 
-public class Effect : Unit
+public abstract class Effect : Unit
 {
     int level;
     public bool enable = true;
-    public virtual String Name() => "";
-    public virtual String Description() => "";
+    //是否可以主动使用
+    public bool initiativeEnable = true;
+    public abstract string Name() ;
+    public abstract string Description();
 
     public Character AttachTarget;
     

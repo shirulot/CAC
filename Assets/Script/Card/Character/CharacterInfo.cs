@@ -19,7 +19,7 @@ public class CharacterInfo
     public int Hp;
 
     //初始hp
-    public int MaxHp;
+    public int ChrageBase;
 
     //攻击力
     public int Attack;
@@ -78,7 +78,7 @@ public class CharacterInfo
         int moved = 1,
         int aegis = 0,
         int attack = 0,
-        int maxHp = 0,
+        int chargeBase = 0,
         int hp = 0,
         int countedCount = 0,
         int score = 0,
@@ -98,7 +98,7 @@ public class CharacterInfo
         this.Mobility = mobility;
         this.Aegis = aegis;
         this.Attack = attack;
-        this.MaxHp = maxHp;
+        this.ChrageBase = chargeBase;
         this.Hp = hp;
         this.Cost = cost;
         this.Moved = moved;
