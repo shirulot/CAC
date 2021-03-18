@@ -1,12 +1,16 @@
-public class SPAegis:Effect
+public class SPAegis : Effect
 {
-    private int _increment;
-    public override string Name()=>"SP:Aegis";
-    public override string Description() => $"我方结束阶段获得特殊指示物*{_increment}的Aegis";
+    private int _base = 0;
+    private int _increment = 1;
 
-    public void Init(int increment)
+    public override string Name() => $"SP:Aegis";
+    public override string Description() => $"我方结束阶段获得特殊指示物*{Increment()}的Aegis";
+
+    public override int Increment() => _base + _increment * Level;
+
+    public void Init(int level)
     {
-        this._increment = increment;
+        this.Level = level;
     }
 
     public override void OnTurnEnd()
@@ -14,7 +18,7 @@ public class SPAegis:Effect
         if (GetComponent<PlayerManager>().ActivePlayerIsCurrent())
         {
             var leader = gameObject.GetComponent<Leader>();
-            leader.AegisChange(leader.SPToken*_increment);
+            leader.AegisChange(leader.SPToken * Increment());
         }
     }
 }

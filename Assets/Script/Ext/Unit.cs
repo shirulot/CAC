@@ -10,10 +10,11 @@ public class Unit : MonoBehaviour
 {
     // 卡片名字
     public virtual String Name() => "";
-
+    // Unit 单位日志 用于记录当前是否已经作用过某种效果等
+    public Dictionary<string, object> UnitLog = new Dictionary<string, object>();
     // 卡片说明
     public virtual String Description() => "";
-
+    
     List<String> _timePointList = new List<String>();
 
     //抽卡时
@@ -123,7 +124,7 @@ public class Unit : MonoBehaviour
         
     }
     
-    public bool CheckTimePoint(String timePoint) => _timePointList.Contains(timePoint);
+    // public bool CheckTimePoint(String timePoint) => _timePointList.Contains(timePoint);
 }
 
 // public class TimePoint

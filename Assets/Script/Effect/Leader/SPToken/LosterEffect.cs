@@ -1,17 +1,18 @@
 public class LosterEffect : Effect
 {
     private string _field = "";
-    private int _increment = 0;
+    private int _increment = 1;
     private string _seriesId = "";
 
     public override string Name() => $"遗失者「{_field}」";
 
     public override string Description() => $"每当「{_field}」退场时增加{_increment}个特殊指示物";
+    public override int Increment() => Level * _increment;
 
-    public void Init(string fieldName, int increment, string seriesId)
+    public void Init(string fieldName, int level, string seriesId)
     {
         _field = fieldName;
-        _increment = increment;
+        Level = level;
         _seriesId = seriesId;
     }
 
@@ -19,7 +20,7 @@ public class LosterEffect : Effect
     {
         if (card is Character && card.CardInfo.seriesId == _seriesId)
         {
-            gameObject.GetComponent<Leader>().ChangeSPToken(_increment);
+            gameObject.GetComponent<Leader>().ChangeSPToken(Increment());
         }
     }
 }

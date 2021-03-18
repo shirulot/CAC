@@ -8,9 +8,7 @@ public class StrikerEffect : Effect
 {
     public override string Name() => "前锋";
     //附加时触发一次 本次结算完成后该能力为白板能力
-    public override string Description() => "当前单位召唤时,提升[攻击力]x1、[生命]x2";
-
-
+    public override string Description() => "[消耗] 当前单位召唤时,永久提升[攻击力]x1、[生命]x2";
     public override void OnAttach()
     {
         if (AttachTarget.Info.EffectEnable)
