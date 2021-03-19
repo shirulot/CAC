@@ -16,11 +16,11 @@ public class LosterEffect : Effect
         _seriesId = seriesId;
     }
 
-    public override void OnCardBreak(Card card)
+    public override void OnCardBreak(Card card, Unit breaker)
     {
         if (card is Character && card.CardInfo.seriesId == _seriesId)
         {
-            gameObject.GetComponent<Leader>().ChangeSPToken(Increment());
+            gameObject.GetComponent<Leader>().ChangeSpToken(Increment());
         }
     }
 }

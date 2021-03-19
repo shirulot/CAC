@@ -16,6 +16,6 @@ public class MagicMasterEffect : Effect
 
     public override void OnCharacterDeath(Character target)
     {
-        gameObject.GetComponent<Leader>().ChangeSPToken(Increment());
+        gameObject.GetComponent<Leader>().ChangeSpToken(Increment());
     }
 }

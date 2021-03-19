@@ -6,14 +6,14 @@ using UnityEngine.EventSystems;
 //卡片
 public class Card : Unit, IComparable
 {
+    // 被哪个玩家持有
+    public int PlayerIndex;
 
     // 卡片预制体
-    [SerializeField]
-    public GameObject CardPrefab;
-    
+    [SerializeField] public GameObject CardPrefab;
+
     // 单位预制体 (当前设想:魔术没有)
-    [SerializeField]
-    public GameObject UnitPrefab;
+    [SerializeField] public GameObject UnitPrefab;
 
 
     public readonly bool IsBlank = false;
@@ -25,10 +25,9 @@ public class Card : Unit, IComparable
     public virtual bool IsSingle() => true;
 
 
-
     // 根据游戏id排序
     public int CompareTo(object obj) => obj is Card c && c.CardInfo.activeId > CardInfo.activeId ? 1 : 0;
-    
+
     private void OnMouseDown()
     {
         if (EventSystem.current.IsPointerOverGameObject(-1))
@@ -47,23 +46,26 @@ public class Card : Unit, IComparable
 
     private void OnCancel()
     {
-        
     }
-    
+
     public virtual void OnMouseClick()
     {
-        
     }
 
     public virtual void EffectLaunch()
     {
-        
     }
+
     // 当魔像充能完成时
     public virtual void OnChargeComplete(Golem golem)
     {
-        
     }
-    
-  
+
+
+    public virtual void CardBreak(Unit breaker)
+    {
+    }
+
+    public override bool Equals(object other) =>
+        other is Card card && CardInfo.activeId == card.CardInfo.activeId && PlayerIndex == card.PlayerIndex;
 }

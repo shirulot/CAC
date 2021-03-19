@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.WSA;
@@ -123,7 +124,7 @@ public class Leader : Character
         //判断当前位置
         var location = GetComponent<Field>().FindUnitLocation(this);
         // TODO mock 判断当前是否在领队位置
-        IsLeader = location[0] == 5 && location[1] == 5;
+        IsLeader = Math.Abs(location.x - 5) == 0 || Math.Abs(location.y - 5) == 0;
         if (IsLeader) AttachLeaderEffect();
         else AttachUnitEffect();
         if (IsLeader) DetachUnitEffect();
@@ -135,7 +136,7 @@ public class Leader : Character
         Info.Hp += increment;
     }
 
-    public void ChangeSPToken(int increment)
+    public void ChangeSpToken(int increment)
     {
         SPToken += increment;
     }

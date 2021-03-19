@@ -10,11 +10,13 @@ public class Unit : MonoBehaviour
 {
     // 卡片名字
     public virtual String Name() => "";
+
     // Unit 单位日志 用于记录当前是否已经作用过某种效果等
     public Dictionary<string, object> UnitLog = new Dictionary<string, object>();
+
     // 卡片说明
     public virtual String Description() => "";
-    
+
     List<String> _timePointList = new List<String>();
 
     //抽卡时
@@ -26,6 +28,7 @@ public class Unit : MonoBehaviour
     public virtual void OnAttackMiss()
     {
     }
+
     // 成功回避攻击
     public virtual void OnAvoidAttack()
     {
@@ -37,12 +40,12 @@ public class Unit : MonoBehaviour
     }
 
     //override 攻击前时点
-    public virtual void OnAttackStart(Card targetCharacter)
+    public virtual void OnAttackStart(Card targetCard)
     {
     }
 
     // 被攻击前
-    public virtual void OnBeforeBeingAttacked(Character character)
+    public virtual void OnBeforeBeingAttacked(Character attacker)
     {
     }
 
@@ -50,7 +53,7 @@ public class Unit : MonoBehaviour
     public virtual void OnAttackEnd(Card targetCharacter)
     {
     }
-    
+
     // 被攻击后
     public virtual void OnAfterBeingAttacked(Character character)
     {
@@ -85,10 +88,10 @@ public class Unit : MonoBehaviour
     // 当前卡片破坏
     public virtual void OnBreak(Unit unit)
     {
-        
     }
+
     // 卡片破坏
-    public virtual void OnCardBreak(Card card)
+    public virtual void OnCardBreak(Card card, Unit breaker)
     {
     }
 
@@ -106,24 +109,22 @@ public class Unit : MonoBehaviour
     public virtual void OnMagicTrigger()
     {
     }
-    
+
     // 单位HP变动时
-    public virtual void OnHpChange(int incremental,Unit unit)
+    public virtual void OnHpChange(int incremental, Unit unit)
     {
     }
 
     //其他单位发动效果时
     public virtual void OnEffectLaunch(Unit unit)
     {
-        
     }
-    
+
     //当卡片被回收时
     public virtual void OnCardRecycle(List<Card> depositList)
     {
-        
     }
-    
+
     // public bool CheckTimePoint(String timePoint) => _timePointList.Contains(timePoint);
 }
 

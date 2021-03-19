@@ -10,9 +10,9 @@ public class OppressHeavyAttackEffect : Effect
     // private int _increment = 1;
 
 
-    public override void OnAttackStart(Card targetCharacter)
+    public override void OnAttackStart(Card targetCard)
     {
-        if (enabled && AttachTarget.CardInfo.Rank > targetCharacter.CardInfo.Rank)
+        if (enabled && AttachTarget.CardInfo.Rank > targetCard.CardInfo.Rank)
             AttachTarget.ChangeAttack(Increment());
     }
     

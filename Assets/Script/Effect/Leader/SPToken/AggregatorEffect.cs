@@ -22,7 +22,7 @@ public class AggregatorEffect : Effect
     {
         if (target.CardInfo.seriesId == _seriesId)
         {
-            gameObject.GetComponent<Leader>().ChangeSPToken(_increment);
+            gameObject.GetComponent<Leader>().ChangeSpToken(_increment);
         }
     }
 }

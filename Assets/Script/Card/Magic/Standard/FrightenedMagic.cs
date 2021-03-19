@@ -24,9 +24,9 @@ public class FrightenedMagic : Magic
         if (targets != null && targets.Count > 0) (targets[0] as Character)?.MagicAttach(this);
     }
 
-    public override void OnBeforeBeingAttacked(Character character)
+    public override void OnBeforeBeingAttacked(Character attacker)
     {
-        character.Damage(3,this);
+        attacker.Damage(3,this);
     }
 
     public override string Name() => "惊吓魔术";

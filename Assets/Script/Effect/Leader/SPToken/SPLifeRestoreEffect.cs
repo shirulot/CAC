@@ -35,7 +35,7 @@ public class SPLifeRestoreEffect : Effect, ITargetChooser
     public void TargetsSelection(List<Card> targets)
     {
         if (targets == null || targets.Count <= 0 || !(targets[0] is Character ca)) return;
-        gameObject.GetComponent<Leader>().ChangeSPToken(-cost);
+        gameObject.GetComponent<Leader>().ChangeSpToken(-cost);
         ca.ChangeHp(cost * Increment());
     }
 }

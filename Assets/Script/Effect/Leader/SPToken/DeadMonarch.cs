@@ -12,8 +12,8 @@ public class DeadMonarchEffect : Effect
         Level = level;
     }
 
-    public override void OnCardBreak(Card card)
+    public override void OnCardBreak(Card card, Unit breaker)
     {
-        if (card is Character ) gameObject.GetComponent<Leader>().ChangeSPToken(_increment);
+        if (card is Character ) gameObject.GetComponent<Leader>().ChangeSpToken(_increment);
     }
 }

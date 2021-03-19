@@ -61,7 +61,7 @@ public class UnitedWeStandChildBuff : AureoleBuff<UnitedWeStandChildBuff>
 
 
     //角色退场
-    public override void OnCardBreak(Card card)
+    public override void OnCardBreak(Card card, Unit breaker)
     {
         EffectCheck();
     }

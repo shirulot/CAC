@@ -30,7 +30,7 @@ public class SPStrategicDeployment : Effect, ITargetChooser
         var leader = gameObject.GetComponent<Leader>();
         if (targets == null || targets.Count <= 0) return;
         var count = targets.Count;
-        leader.ChangeSPToken(count);
+        leader.ChangeSpToken(count);
         //TODO 创建巨石
     }
 }
