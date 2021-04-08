@@ -1,6 +1,13 @@
 using System;
 using System.Collections.Generic;
 
+public enum EffectType
+{
+    initiative,
+    passive,
+    ask,
+}
+
 public abstract class Effect : Unit
 {
     public int Level = 1;
@@ -8,7 +15,7 @@ public abstract class Effect : Unit
     public bool enable = true;
 
     //是否可以主动使用
-    public bool initiativeEnable = true;
+    public bool Initiative = false;
     public abstract string Name();
     public abstract string Description();
 
@@ -20,10 +27,13 @@ public abstract class Effect : Unit
     {
         OnAttach();
     }
-
-
+    
+    
+    
     public virtual void OnAttach()
     {
         AttachTarget = gameObject.GetComponentInChildren<Character>();
     }
+
+    public virtual EffectType  LaunchType()=> EffectType.passive;
 }
